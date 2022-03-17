@@ -12,5 +12,16 @@
             prefHeight="400.0" prefWidth="600.0">
 
     <Label>Test include list-view.fxml</Label>
+    <SplitPane dividerPositions="0.5" layoutX="120" layoutY="25" orientation="VERTICAL" prefHeight="335"
+               prefWidth="512">
+        <items>
+            <AnchorPane>
+
+            </AnchorPane>
+            <AnchorPane>
+
+            </AnchorPane>
+        </items>
+    </SplitPane>
 
 </AnchorPane>
