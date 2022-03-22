@@ -19,6 +19,7 @@ public class HelloApplication extends Application {
         stage.setTitle("Tour-Planner");
         stage.setScene(scene);
         stage.show();
+        System.out.println("test");
     }
 
     public static void main(String[] args) {
