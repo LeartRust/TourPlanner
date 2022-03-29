@@ -5,12 +5,18 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Button?>
+<?import java.net.URL?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.tourplanner.HelloController">
+      fx:controller="com.example.tourplanner.HelloController" styleClass="background">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
+    <stylesheets>
+        <URL value="@styles/DemoStyles.css"/>
+    </stylesheets>
+
     <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <Button text="Hello!" styleClass="mainButton" onAction="#onHelloButtonClick"/>
     <fx:include source="list-view.fxml"/>
+
 </VBox>
