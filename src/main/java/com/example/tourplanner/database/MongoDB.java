@@ -34,8 +34,8 @@ public class MongoDB {
         ObjectId id = tours.insertOne(tour).getInsertedId().asObjectId().getValue();
 
 
-        Document yoyo = tours.find(new Document("name", "yoyo")).first();
-        System.out.println(yoyo.toJson());
+        Document test1 = tours.find(new Document("name", "test1")).first();
+        System.out.println(test1.toJson());
     }
 
 
