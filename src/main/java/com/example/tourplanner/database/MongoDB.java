@@ -23,6 +23,7 @@ import org.bson.Document;
 public class MongoDB {
 
     public void createDb(){
+        //TODO manage mongodb imports, somehow not working sometimes
         MongoClient client = MongoClients.create("mongodb://localhost:27017");
 
         //DB database = mongoClient.getDB("TheDatabaseName");
