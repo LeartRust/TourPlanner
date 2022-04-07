@@ -5,6 +5,7 @@ module com.example.tourplanner {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
+
     requires org.mongodb.driver.sync.client;
     requires org.mongodb.driver.core;
     requires org.mongodb.bson;
@@ -13,4 +14,6 @@ module com.example.tourplanner {
     exports com.example.tourplanner;
     exports com.example.tourplanner.database;
     opens com.example.tourplanner.database to javafx.fxml;
+    exports com.example.tourplanner.controllers;
+    opens com.example.tourplanner.controllers to javafx.fxml;
 }
