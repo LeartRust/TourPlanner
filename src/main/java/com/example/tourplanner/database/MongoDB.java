@@ -50,5 +50,13 @@ public class MongoDB {
         ObjectId id = tours.insertOne(tour).getInsertedId().asObjectId().getValue();
     }
 
+    public ArrayList<String> getTours(String username){
+        ArrayList<String> toursList = new ArrayList<>();
 
+        //Document test1 = tours.find({});
+
+        System.out.println(test1.toJson());
+
+        return toursList;
+    }
 }
