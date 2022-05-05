@@ -86,10 +86,9 @@
     <!--_____________________________________________________________________________________________________________-->
                             <AnchorPane>
                                 <children>
-                                    <ListView  AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-
-                                    </ListView>
-                                    <Button text="ADD" layoutX="5" layoutY="790" onAction="#onAddTourButtonClick"></Button>
+                                    <fx:include fx:id="child" source="list-view.fxml" AnchorPane.topAnchor="0.0"
+                                                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                                AnchorPane.bottomAnchor="0.0" />
                                 </children>
                             </AnchorPane>
     <!--_____________________________________________________________________________________________________________-->
