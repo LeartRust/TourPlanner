@@ -31,7 +31,7 @@
     <Label text="Tour Distance"/>
     <TextField fx:id="tourDistance" maxWidth="200" ></TextField>
 
-    <Button fx:id="createTourButton" text="create tour!" styleClass="mainButton" onAction="#onCreateTourButtonClick"/>
+    <Button text="create tour!" styleClass="mainButton" onAction="#onCreateTourButtonClick"/>
 <!--
     <fx:include source="list-view.fxml"/>
 -->
