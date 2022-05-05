@@ -3,9 +3,11 @@ package com.example.tourplanner.controllers;
 import com.example.tourplanner.viewmodel.CreateTourViewModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,6 +15,8 @@ import java.util.ResourceBundle;
 public class CreateTourController implements Initializable {
     private final CreateTourViewModel viewModel = new CreateTourViewModel();
 
+    @FXML
+    private Button createTourButton;
     @FXML
     private TextField tourName;
     @FXML
@@ -39,8 +43,9 @@ public class CreateTourController implements Initializable {
 
     @FXML
     protected void onCreateTourButtonClick() {
-        viewModel.saveTour();
-
+        //viewModel.saveTour();
+        Stage stage = (Stage) createTourButton.getScene().getWindow();
+        stage.close();
     }
 
 }
