@@ -42,9 +42,9 @@
                                         </Menu>
                                         <Menu text="Settings">
                                             <items>
-                                                <MenuItem text="Leart"></MenuItem>
-                                                <MenuItem text="is"></MenuItem>
-                                                <MenuItem text="gay"></MenuItem>
+                                                <MenuItem text="Test"></MenuItem>
+                                                <MenuItem text="test2"></MenuItem>
+                                                <MenuItem text="test3   "></MenuItem>
                                             </items>
                                         </Menu>
                                     </menus>
@@ -65,9 +65,9 @@
                                         </Menu>
                                         <Menu text="Settings">
                                             <items>
-                                                <MenuItem text="Leart"></MenuItem>
-                                                <MenuItem text="is"></MenuItem>
-                                                <MenuItem text="gay"></MenuItem>
+                                                <MenuItem text="test"></MenuItem>
+                                                <MenuItem text="test2"></MenuItem>
+                                                <MenuItem text="test3"></MenuItem>
                                             </items>
                                         </Menu>
                                     </menus>

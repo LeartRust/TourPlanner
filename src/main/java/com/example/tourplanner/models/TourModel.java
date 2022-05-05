@@ -22,4 +22,59 @@ public class TourModel {
         this.tourDistance = tourDistance;
     }
 
+    public String getTourId() {
+        return tourId;
+    }
+
+    public void setTourId(String tourId) {
+        this.tourId = tourId;
+    }
+
+    public String getTourName() {
+        return tourName;
+    }
+
+    public void setTourName(String tourName) {
+        this.tourName = tourName;
+    }
+
+    public String getTourDescription() {
+        return tourDescription;
+    }
+
+    public void setTourDescription(String tourDescription) {
+        this.tourDescription = tourDescription;
+    }
+
+    public String getTourFrom() {
+        return tourFrom;
+    }
+
+    public void setTourFrom(String tourFrom) {
+        this.tourFrom = tourFrom;
+    }
+
+    public String getTourTo() {
+        return tourTo;
+    }
+
+    public void setTourTo(String tourTo) {
+        this.tourTo = tourTo;
+    }
+
+    public String getTourTransportType() {
+        return tourTransportType;
+    }
+
+    public void setTourTransportType(String tourTransportType) {
+        this.tourTransportType = tourTransportType;
+    }
+
+    public String getTourDistance() {
+        return tourDistance;
+    }
+
+    public void setTourDistance(String tourDistance) {
+        this.tourDistance = tourDistance;
+    }
 }

@@ -38,8 +38,6 @@ public class MongoDB {
                 .append("tourDistance", tourDistance)
                 .append("ages", new Document("min", 5));
         ObjectId id = tours.insertOne(tour).getInsertedId().asObjectId().getValue();
-        getTours();
-
     }
 
     public ArrayList<TourModel> getTours(){

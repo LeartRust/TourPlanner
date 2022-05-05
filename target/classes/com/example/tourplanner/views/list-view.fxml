@@ -13,9 +13,10 @@
             prefHeight="400.0" prefWidth="600.0">
 
 
-    <ListView  AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+    <ListView  fx:id="tourListView" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 
     </ListView>
-    <Button text="ADD" layoutX="5" layoutY="790" onAction="#onAddTourButtonClick"></Button>
+    <Button text="Add" layoutX="5" layoutY="790" onAction="#onAddTourButtonClick"></Button>
+    <Button text="Refresh" layoutX="80" layoutY="790" onAction="#onRefreshButtonClick"></Button>
 
 </AnchorPane>
