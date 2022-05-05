@@ -43,7 +43,7 @@ public class CreateTourController implements Initializable {
 
     @FXML
     protected void onCreateTourButtonClick() {
-        //viewModel.saveTour();
+        viewModel.saveTour();
         Stage stage = (Stage) createTourButton.getScene().getWindow();
         stage.close();
     }

@@ -1,7 +1,7 @@
 package com.example.tourplanner.viewmodel;
 
 import com.example.tourplanner.database.MongoDB;
-import com.example.tourplanner.models.TourModel;
+import com.example.tourplanner.models.AddTourModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -37,7 +37,7 @@ public class CreateTourViewModel {
 
 
     public void saveTour(){
-       //TourModel tour = new TourModel(tourName.get(), tourDescription.get(), tourFrom.get(), tourTo.get(), tourTransportType.get(), tourDistance.get());
+       AddTourModel tour = new AddTourModel(tourName.get(), tourDescription.get(), tourFrom.get(), tourTo.get(), tourTransportType.get(), tourDistance.get());
        MongoDB db = new MongoDB();
        db.addTour(tourName.get(), tourDescription.get(), tourFrom.get(), tourTo.get(), tourTransportType.get(), tourDistance.get());
         tourName.set("");

@@ -1,24 +1,13 @@
 package com.example.tourplanner.database;
 
-import com.mongodb.*;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
+import com.example.tourplanner.models.ListTourModel;
+import com.example.tourplanner.models.TourModel;
+import com.mongodb.client.*;
 
-import com.mongodb.client.model.UpdateOptions;
-import com.mongodb.client.result.*;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
-import java.util.List;
-import java.util.Arrays;
 import java.util.ArrayList;
-
-import static com.mongodb.client.model.Filters.*;
-import static com.mongodb.client.model.Updates.*;
-import org.bson.Document;
 
 public class MongoDB {
     MongoClient client = MongoClients.create("mongodb://localhost:27017");
@@ -39,6 +28,7 @@ public class MongoDB {
     }
 
     public void addTour(String tourName, String tourDescription, String tourFrom, String tourTo, String tourTransportType, String tourDistance){
+        System.out.println("ADD TOUR");
         Document tour = new Document()
                 .append("tourName", tourName)
                 .append("tourDescription", tourDescription)
@@ -48,14 +38,21 @@ public class MongoDB {
                 .append("tourDistance", tourDistance)
                 .append("ages", new Document("min", 5));
         ObjectId id = tours.insertOne(tour).getInsertedId().asObjectId().getValue();
+        getTours();
+
     }
 
-    public ArrayList<String> getTours(String username){
-        ArrayList<String> toursList = new ArrayList<>();
+    public ArrayList<TourModel> getTours(){
+        ArrayList<TourModel> toursList = new ArrayList<>();
 
-        //Document test1 = tours.find({});
-
-        System.out.println(test1.toJson());
+        MongoCursor<Document> cursor = tours.find().cursor();
+        //TODO refactor!
+        while(cursor.hasNext())
+        {
+            ArrayList<String> list = new ArrayList();
+            cursor.next().values().stream().forEach(val -> list.add(val.toString()));
+            toursList.add(new TourModel(list.get(0), list.get(1), list.get(2), list.get(3), list.get(4), list.get(5), list.get(6)));
+        }
 
         return toursList;
     }
