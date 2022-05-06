@@ -12,8 +12,10 @@ module com.example.tourplanner {
 
     opens com.example.tourplanner to javafx.fxml;
     exports com.example.tourplanner;
-    exports com.example.tourplanner.database;
-    opens com.example.tourplanner.database to javafx.fxml;
+    exports com.example.tourplanner.dataAccessLayer.database;
+    opens com.example.tourplanner.dataAccessLayer.database to javafx.fxml;
     exports com.example.tourplanner.controllers;
     opens com.example.tourplanner.controllers to javafx.fxml;
+    exports com.example.tourplanner.dataAccessLayer;
+    opens com.example.tourplanner.dataAccessLayer to javafx.fxml;
 }

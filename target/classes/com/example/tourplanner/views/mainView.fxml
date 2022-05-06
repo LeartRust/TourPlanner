@@ -44,7 +44,7 @@
                                             <items>
                                                 <MenuItem text="Test"></MenuItem>
                                                 <MenuItem text="test2"></MenuItem>
-                                                <MenuItem text="test3"></MenuItem>
+                                                <MenuItem text="test3   "></MenuItem>
                                             </items>
                                         </Menu>
                                     </menus>

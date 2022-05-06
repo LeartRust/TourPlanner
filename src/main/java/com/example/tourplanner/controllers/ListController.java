@@ -1,6 +1,6 @@
 package com.example.tourplanner.controllers;
 
-import com.example.tourplanner.database.MongoDB;
+import com.example.tourplanner.dataAccessLayer.database.MongoDB;
 import com.example.tourplanner.main;
 import com.example.tourplanner.models.TourModel;
 import javafx.event.ActionEvent;
@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class ListController implements Initializable {
