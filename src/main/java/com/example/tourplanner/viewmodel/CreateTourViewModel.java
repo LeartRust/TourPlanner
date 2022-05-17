@@ -39,8 +39,8 @@ public class CreateTourViewModel {
 
 
     public void saveTour(){
-       AddTourModel tour = new AddTourModel(tourName.get(), tourDescription.get(), tourFrom.get(), tourTo.get(), tourTransportType.get(), tourDistance.get());
-       MongoDB db = new MongoDB();
+        //AddTourModel tour = new AddTourModel(tourName.get(), tourDescription.get(), tourFrom.get(), tourTo.get(), tourTransportType.get(), tourDistance.get());
+        //MongoDB db = new MongoDB();
         BusinessLogicLayer bl = new BusinessLogicLayer();
         bl.addTour(new tourInfo(tourName.get(), tourDescription.get(), tourFrom.get(), tourTo.get(), tourTransportType.get(), tourDistance.get()));
         tourName.set("");

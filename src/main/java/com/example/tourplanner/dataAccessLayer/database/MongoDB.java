@@ -26,6 +26,7 @@ public class MongoDB implements IMongoDB {
         System.out.println(test1.toJson());*/
     }
 
+/*
     public void addTour(tourInfo tourInfo){
         Document tour = new Document()
                 .append("tourName", tourInfo.tourName())
@@ -34,6 +35,21 @@ public class MongoDB implements IMongoDB {
                 .append("tourTo", tourInfo.tourTo())
                 .append("tourTransportType", tourInfo.tourTransportType())
                 .append("tourDistance", tourInfo.tourDistance())
+                .append("ages", new Document("min", 5));
+        ObjectId id = tours.insertOne(tour).getInsertedId().asObjectId().getValue();
+    }
+*/
+
+
+    @Override
+    public void addTour(String tourName, String tourDescription, String tourFrom, String tourTo, String tourTransportType, String tourDistance) {
+        Document tour = new Document()
+                .append("tourName", tourName)
+                .append("tourDescription", tourDescription)
+                .append("tourFrom", tourFrom)
+                .append("tourTo", tourTo)
+                .append("tourTransportType", tourTransportType)
+                .append("tourDistance", tourDistance)
                 .append("ages", new Document("min", 5));
         ObjectId id = tours.insertOne(tour).getInsertedId().asObjectId().getValue();
     }

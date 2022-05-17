@@ -8,8 +8,8 @@ public class BusinessLogicLayer {
 
     private final IMongoDB database;
 
-    public void addTour(){
-       this.database.addTour(new tourInfo());
+    public void addTour(tourInfo tour){
+       this.database.addTour(tour.tourName(), tour.tourDescription(), tour.tourFrom(), tour.tourTo(), tour.tourTransportType(), tour.tourDistance());
     }
 
     public BusinessLogicLayer(){
