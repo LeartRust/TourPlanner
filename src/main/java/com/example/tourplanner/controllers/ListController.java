@@ -1,5 +1,6 @@
 package com.example.tourplanner.controllers;
 
+import com.example.tourplanner.businessLogic.BusinessLogicLayer;
 import com.example.tourplanner.dataAccessLayer.database.MongoDB;
 import com.example.tourplanner.main;
 import com.example.tourplanner.models.TourModel;
@@ -20,7 +21,7 @@ public class ListController implements Initializable {
     @FXML
     private ListView tourListView;
 
-    MongoDB db = new MongoDB();
+    //MongoDB db = new MongoDB();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -29,7 +30,8 @@ public class ListController implements Initializable {
 
     public void addToList(){
         tourListView.getItems().clear();
-        ArrayList<TourModel> toursList = db.getTours();
+        BusinessLogicLayer bl = new BusinessLogicLayer();
+        ArrayList<TourModel> toursList = bl.getTours();
         toursList.stream().forEach(tour -> tourListView.getItems().add(tour.getTourName()));
     }
 
