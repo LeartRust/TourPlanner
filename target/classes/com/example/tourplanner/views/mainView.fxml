@@ -21,7 +21,6 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
         </padding>-->
 
-    <!--<Label fx:id="welcomeText"/>-->
     <SplitPane dividerPositions="0.08" orientation="VERTICAL" prefHeight="1600.0" prefWidth="900.0">
         <items>
 <!--_________________________________________________________________________________________________________________-->
@@ -86,7 +85,7 @@
     <!--_____________________________________________________________________________________________________________-->
                             <AnchorPane>
                                 <children>
-                                    <fx:include fx:id="child" source="list-view.fxml" AnchorPane.topAnchor="0.0"
+                                    <fx:include fx:id="child" source="listView.fxml" AnchorPane.topAnchor="0.0"
                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                                                 AnchorPane.bottomAnchor="0.0" />
                                 </children>
@@ -94,9 +93,12 @@
     <!--_____________________________________________________________________________________________________________-->
                             <AnchorPane>
                                 <children>
-                                    <ImageView>
+                                    <!--<ImageView>
                                         <Image url="@../pictures/TestTourMap.jpg" backgroundLoading="true" ></Image>
-                                    </ImageView>
+                                    </ImageView>-->
+                                    <fx:include fx:id="child2" source="detailsView.fxml" AnchorPane.topAnchor="0.0"
+                                                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                                AnchorPane.bottomAnchor="0.0" />
                                 </children>
                             </AnchorPane>
     <!--_____________________________________________________________________________________________________________-->
@@ -108,5 +110,5 @@
         </items>
     </SplitPane>
     <!--<Button text="Hello!" onAction="#onHelloButtonClick"/>
-    <fx:include source="list-view.fxml"/>-->
+    <fx:include source="listView.fxml"/>-->
 </VBox>

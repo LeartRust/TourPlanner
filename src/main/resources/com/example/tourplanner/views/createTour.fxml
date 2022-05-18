@@ -16,7 +16,6 @@
         <URL value="@../styles/DemoStyles.css"/>
     </stylesheets>
 
-    <Label fx:id="welcomeText"/>
     <Label text="create a new tour:"/>
     <Label text="Name"/>
     <TextField fx:id="tourName" maxWidth="200" ></TextField>
@@ -33,7 +32,7 @@
 
     <Button fx:id="createTourButton" text="create tour!" styleClass="mainButton" onAction="#onCreateTourButtonClick"/>
 <!--
-    <fx:include source="list-view.fxml"/>
+    <fx:include source="listView.fxml"/>
 -->
 
 </VBox>

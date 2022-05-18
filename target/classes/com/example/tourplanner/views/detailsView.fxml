@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.tourplanner.controllers.DetailsController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <Label fx:id="header" text=" Choose a Tour to set the details"></Label>
+
+    <Label text="Name"/>
+    <Text fx:id="tourName" text="TESTT" ></Text>
+    <Label text="Tour description"/>
+    <Text fx:id="tourDescription" text="TESTT" ></Text>
+    <Label text="from"/>
+    <Text fx:id="tourFrom" text="TESTT" ></Text>
+    <Label text="to"/>
+    <Text fx:id="tourTo" text="TESTT" ></Text>
+    <Label text="Transport type"/>
+    <Text fx:id="tourTransportType" text="TESTT" ></Text>
+    <Label text="Tour Distance"/>
+    <Text fx:id="tourDistance" text="TESTT" ></Text>
+
+</AnchorPane>
