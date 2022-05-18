@@ -19,7 +19,14 @@ public class BusinessLogicLayer {
         return this.database.getTours();
     }
 
+    public void deleteTour(String item) {
+        this.database.deleteTour(item);
+    }
+
     public BusinessLogicLayer(){
         this.database = MongoDB.getDatabase();
     }
+
+
+
 }

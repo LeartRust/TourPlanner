@@ -1,12 +1,17 @@
 package com.example.tourplanner.dataAccessLayer.database;
 
 import com.example.tourplanner.models.TourModel;
+import com.mongodb.MongoException;
 import com.mongodb.client.*;
 
+import com.mongodb.client.result.DeleteResult;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
+
+import static com.mongodb.client.model.Filters.eq;
 
 public class MongoDB implements IMongoDB {
     MongoClient client = MongoClients.create("mongodb://localhost:27017");
@@ -69,6 +74,23 @@ public class MongoDB implements IMongoDB {
 
         return toursList;
     }
+
+    @Override
+    public void deleteTour(String item) {
+        //tours.find().forEach(document -> System.out.println("TESTT " + document.get("tourName")));
+
+        //document.remove("tourName", item)
+
+        Bson query = eq("tourName", item);
+        try {
+            DeleteResult result = tours.deleteOne(query);
+            System.out.println("Deleted document count: " + result.getDeletedCount());
+        } catch (MongoException me) {
+            System.err.println("Unable to delete due to an error: " + me);
+        }
+    }
+
+
 
     public static IMongoDB getDatabase(){
 
