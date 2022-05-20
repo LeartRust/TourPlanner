@@ -1,0 +1,17 @@
+
+.tool-bar{
+    -fx-border-color: grey;
+}
+
+.InfoLabel{
+    -fx-border-color: grey;
+    -fx-background-color: #dcdcdc;
+    -fx-font-weight: bold;
+    -fx-padding: 10 10 10 10;
+}
+
+.Label{
+    -fx-border-color: grey;
+    -fx-background-color: #dcdcdc;
+    -fx-padding: 10 10 10 10;
+}

@@ -7,24 +7,57 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+<?import java.net.URL?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.tourplanner.controllers.DetailsController"
             prefHeight="400.0" prefWidth="600.0">
 
+
+<VBox>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+
+    <stylesheets>
+        <URL value="@../styles/DetailsViewStyles.css"/>
+    </stylesheets>
+
     <Label fx:id="header" text=" Choose a Tour to set the details"></Label>
 
-    <Label text="Name"/>
-    <Text fx:id="tourName" text="TESTT" ></Text>
-    <Label text="Tour description"/>
-    <Text fx:id="tourDescription" text="TESTT" ></Text>
-    <Label text="from"/>
-    <Text fx:id="tourFrom" text="TESTT" ></Text>
-    <Label text="to"/>
-    <Text fx:id="tourTo" text="TESTT" ></Text>
-    <Label text="Transport type"/>
-    <Text fx:id="tourTransportType" text="TESTT" ></Text>
-    <Label text="Tour Distance"/>
-    <Text fx:id="tourDistance" text="TESTT" ></Text>
+
+    <Pane minHeight="20"/>
+
+    <Label styleClass="InfoLabel" text="Name:"/>
+
+    <Label  styleClass="Label" maxWidth="100" wrapText="true" fx:id="tourName" text="TestTouraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" ></Label>
+
+    <Pane minHeight="20"/>
+
+    <Label styleClass="InfoLabel" text="Tour description"/>
+    <Label styleClass="Label" fx:id="tourDescription" text="TestDescription" ></Label>
+
+    <Pane minHeight="20"/>
+
+    <Label styleClass="InfoLabel" text="from"/>
+    <Label styleClass="Label" maxWidth="100" wrapText="true" fx:id="tourFrom" text="TestFrom" ></Label>
+
+    <Pane minHeight="20"/>
+
+    <Label styleClass="InfoLabel" text="to"/>
+    <Label styleClass="Label" maxWidth="100" wrapText="true" fx:id="tourTo" text="TestTo" ></Label>
+
+    <Pane minHeight="20"/>
+
+    <Label styleClass="InfoLabel" text="Transport type"/>
+    <Label styleClass="Label" maxWidth="100" wrapText="true" fx:id="tourTransportType" text="TestTransportType" ></Label>
+
+    <Pane minHeight="20"/>
+
+    <Label styleClass="InfoLabel" text="Tour Distance"/>
+    <Label styleClass="Label" maxWidth="100" wrapText="true" fx:id="tourDistance" text="TestDistance" ></Label>
+</VBox>
+
 
 </AnchorPane>

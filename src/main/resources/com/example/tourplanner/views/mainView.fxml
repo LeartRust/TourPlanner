@@ -53,24 +53,7 @@
     <!--_____________________________________________________________________________________________________________-->
                         <AnchorPane minHeight="31">
                             <children>
-                                <MenuBar  AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                    <menus>
-                                        <Menu text="File">
-                                            <items>
-                                                <MenuItem text="Open"></MenuItem>
-                                                <MenuItem text="Save"></MenuItem>
-                                                <MenuItem text="Save as"></MenuItem>
-                                            </items>
-                                        </Menu>
-                                        <Menu text="Settings">
-                                            <items>
-                                                <MenuItem text="test"></MenuItem>
-                                                <MenuItem text="test2"></MenuItem>
-                                                <MenuItem text="test3"></MenuItem>
-                                            </items>
-                                        </Menu>
-                                    </menus>
-                                </MenuBar>
+
                             </children>
                         </AnchorPane>
 <!--_________________________________________________________________________________________________________________-->
@@ -80,10 +63,10 @@
 <!--_________________________________________________________________________________________________________________-->
             <AnchorPane minHeight="821.5" minWidth="0.0" prefHeight="1600.0" prefWidth="900.0">
                 <children>
-                    <SplitPane dividerPositions="0.1" orientation="HORIZONTAL" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                    <SplitPane dividerPositions="0.15" orientation="HORIZONTAL" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" >
                         <items>
     <!--_____________________________________________________________________________________________________________-->
-                            <AnchorPane>
+                            <AnchorPane minWidth="300.0">
                                 <children>
                                     <fx:include fx:id="child" source="listView.fxml" AnchorPane.topAnchor="0.0"
                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
@@ -91,14 +74,31 @@
                                 </children>
                             </AnchorPane>
     <!--_____________________________________________________________________________________________________________-->
-                            <AnchorPane>
+                            <AnchorPane minWidth="1300.0">
                                 <children>
-                                    <!--<ImageView>
-                                        <Image url="@../pictures/TestTourMap.jpg" backgroundLoading="true" ></Image>
-                                    </ImageView>-->
-                                    <fx:include fx:id="child2" source="detailsView.fxml" AnchorPane.topAnchor="0.0"
-                                                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                AnchorPane.bottomAnchor="0.0" />
+                                    <SplitPane dividerPositions="0.7" orientation="VERTICAL" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+                                        <items>
+                                            <!--_____________________________________________________________________________________________________________-->
+                                            <AnchorPane>
+                                                <children>
+                                                    <!--<ImageView>
+                                                    <Image url="@../pictures/TestTourMap.jpg" backgroundLoading="true" ></Image>
+                                                    </ImageView>-->
+                                                    <fx:include fx:id="child2" source="detailsView.fxml" AnchorPane.topAnchor="0.0"
+                                                                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                                                AnchorPane.bottomAnchor="0.0" />
+                                                </children>
+                                            </AnchorPane>
+                                            <!--_____________________________________________________________________________________________________________-->
+                                            <AnchorPane>
+                                                <children>
+
+                                                </children>
+                                            </AnchorPane>
+                                            <!--_____________________________________________________________________________________________________________-->
+                                        </items>
+                                    </SplitPane>
+
                                 </children>
                             </AnchorPane>
     <!--_____________________________________________________________________________________________________________-->
