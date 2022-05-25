@@ -4,6 +4,8 @@ import com.example.tourplanner.models.TourModel;
 import com.mongodb.MongoException;
 import com.mongodb.client.*;
 
+import com.mongodb.client.model.Projections;
+import com.mongodb.client.model.Sorts;
 import com.mongodb.client.result.DeleteResult;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -20,6 +22,7 @@ public class MongoDB implements IMongoDB {
 
     public void createDb(){
         //TODO manage mongodb imports, somehow not working sometimes
+        //TODO make tourName unique
 
         //DB database = mongoClient.getDB("TheDatabaseName");
 
@@ -72,6 +75,8 @@ public class MongoDB implements IMongoDB {
                 document.get("tourTransportType").toString(),
                 document.get("tourDistance").toString())));
 
+        getTour("CL-Final");
+
         return toursList;
     }
 
@@ -96,4 +101,49 @@ public class MongoDB implements IMongoDB {
 
          return new MongoDB();
     }
+
+    @Override
+    public TourModel getTour(String tourName){
+
+            TourModel emptyTour = new TourModel("","","","","","","");
+            Bson projectionFields = Projections.fields(
+                    Projections.include("_id", "tourName", "tourDescription", "tourFrom", "tourTo", "tourTransportType", "tourDistance"),
+                    Projections.excludeId());
+
+            Document doc = tours.find(eq("tourName", tourName))
+                    .projection(projectionFields)
+                    .sort(Sorts.descending("tourName"))
+                    .first();
+
+            if (doc == null) {
+                System.out.println("No results found.");
+            } else {
+                System.out.println("chose: " + doc.toJson());
+                doc.values().stream().forEach(data -> System.out.println(data));
+                TourModel tour = getValuesFromObject(doc);
+                return tour;
+            }
+/*        ArrayList<TourModel> searchedTours = new ArrayList<>();
+        tours.find().forEach(document ->  searchedTours.add(new TourModel(
+                document.get("_id").toString(),
+                document.get("tourName").toString(),
+                document.get("tourDescription").toString(),
+                document.get("tourFrom").toString(),
+                document.get("tourTo").toString(),
+                document.get("tourTransportType").toString(),
+                document.get("tourDistance").toString())));
+        searchedTours.stream().forEach( tour -> System.out.println("Searched: " + tour.getTourName()));
+   */
+        return emptyTour;
+        //return new TourModel(doc.get(1).toString(), doc.get(2).toString(), doc.get(3).toString(), doc.get(4).toString(), doc.get(5).toString(), doc.get(6).toString(), doc.get(7).toString());
+    }
+
+    private TourModel getValuesFromObject(Document doc) {
+        ArrayList<String> tourValues = new ArrayList<>();
+        doc.values().stream().forEach(value -> tourValues.add(value.toString()));
+        return new TourModel("", tourValues.get(0), tourValues.get(1), tourValues.get(2), tourValues.get(3), tourValues.get(4), tourValues.get(5));
+    }
+
+
 }
+

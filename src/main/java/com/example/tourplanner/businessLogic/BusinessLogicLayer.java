@@ -28,5 +28,7 @@ public class BusinessLogicLayer {
     }
 
 
-
+    public TourModel getTour(String tour) {
+        return this.database.getTour(tour);
+    }
 }

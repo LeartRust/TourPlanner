@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -60,6 +61,9 @@ public class ListController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("views/createTour.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1600, 900);
         stage.setResizable(false);
+
+
+
         //TODO set Max width to Screen
         //stage.setMaxWidth(Screen);
         stage.setTitle("Tour-Planner");
@@ -71,6 +75,11 @@ public class ListController implements Initializable {
         addToList();
     }
 
+    public void handleMouseClick(MouseEvent mouseEvent) {
+        System.out.println("clicked on " + tourListView.getSelectionModel().getSelectedItem());
+        DetailsController dc = new DetailsController();
+        dc.initData(tourListView.getSelectionModel().getSelectedItem());
+    }
 
 
     //Callback to add text and button to the list with an delete method

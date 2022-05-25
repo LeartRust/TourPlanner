@@ -10,4 +10,6 @@ public interface IMongoDB {
     ArrayList<TourModel> getTours();
 
     void deleteTour(String item);
+
+    TourModel getTour(String tourName);
 }
