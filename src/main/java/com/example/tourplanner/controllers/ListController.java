@@ -32,6 +32,7 @@ import java.util.ResourceBundle;
 
 public class ListController implements Initializable {
 
+
     @FXML
     private ListView<String> tourListView = new ListView<String>();
 
@@ -79,12 +80,13 @@ public class ListController implements Initializable {
 
     public void handleMouseClick(MouseEvent mouseEvent) throws IOException {
 
+       System.out.println("clicked on " + tourListView.getSelectionModel().getSelectedItem());
+        //DetailsController dc = new DetailsController();
+        //detailsController.initData(tourListView.getSelectionModel().getSelectedItem());
+   }
 
-
-
-        System.out.println("clicked on " + tourListView.getSelectionModel().getSelectedItem());
-        DetailsController dc = new DetailsController();
-        dc.initData(tourListView.getSelectionModel().getSelectedItem());
+    public String getSelectedTour(){
+        return tourListView.getSelectionModel().getSelectedItem();
     }
 
     public void onSearchButtonClick(ActionEvent actionEvent) {

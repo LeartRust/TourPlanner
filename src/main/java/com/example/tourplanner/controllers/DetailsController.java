@@ -43,4 +43,5 @@ public class DetailsController implements Initializable {
         //tourName.setText("test2");
         System.out.println("TEST");
     }
+
 }

@@ -58,7 +58,7 @@
     <!--_____________________________________________________________________________________________________________-->
                             <AnchorPane minWidth="300.0">
                                 <children>
-                                    <fx:include fx:id="child" source="listView.fxml" AnchorPane.topAnchor="0.0"
+                                    <fx:include fx:id="list" source="listView.fxml" AnchorPane.topAnchor="0.0"
                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                                                 AnchorPane.bottomAnchor="0.0" />
                                 </children>
@@ -74,9 +74,9 @@
                                                     <!--<ImageView>
                                                     <Image url="@../pictures/TestTourMap.jpg" backgroundLoading="true" ></Image>
                                                     </ImageView>-->
-                                                    <fx:include fx:id="child2" source="detailsView.fxml" AnchorPane.topAnchor="0.0"
+                                                    <fx:include source="detailsView.fxml" AnchorPane.topAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                                AnchorPane.bottomAnchor="0.0" />
+                                                                AnchorPane.bottomAnchor="0.0" fx:id="details"/>
                                                 </children>
                                             </AnchorPane>
                                             <!--_____________________________________________________________________________________________________________-->
@@ -99,6 +99,5 @@
 <!--_________________________________________________________________________________________________________________-->
         </items>
     </SplitPane>
-    <!--<Button text="Hello!" onAction="#onHelloButtonClick"/>
-    <fx:include source="listView.fxml"/>-->
+    <Button text="Hello!" onAction="#onHelloButtonClick"/>
 </VBox>
