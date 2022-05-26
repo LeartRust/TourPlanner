@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ListController implements Initializable {
+
     @FXML
     private ListView<String> tourListView = new ListView<String>();
 
@@ -75,10 +77,17 @@ public class ListController implements Initializable {
         addToList();
     }
 
-    public void handleMouseClick(MouseEvent mouseEvent) {
+    public void handleMouseClick(MouseEvent mouseEvent) throws IOException {
+
+
+
+
         System.out.println("clicked on " + tourListView.getSelectionModel().getSelectedItem());
         DetailsController dc = new DetailsController();
         dc.initData(tourListView.getSelectionModel().getSelectedItem());
+    }
+
+    public void onSearchButtonClick(ActionEvent actionEvent) {
     }
 
 

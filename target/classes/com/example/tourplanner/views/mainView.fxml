@@ -24,12 +24,10 @@
     <SplitPane dividerPositions="0.08" orientation="VERTICAL" prefHeight="1600.0" prefWidth="900.0">
         <items>
 <!--_________________________________________________________________________________________________________________-->
-            <AnchorPane minHeight="70.0" minWidth="0.0" prefHeight="1600.0" prefWidth="900.0">
+            <AnchorPane minHeight="27.5" minWidth="0.0" prefHeight="1600.0" prefWidth="900.0">
                 <SplitPane dividerPositions="0.5" orientation="VERTICAL" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <items>
     <!--_____________________________________________________________________________________________________________-->
-                        <AnchorPane minHeight="31">
-                            <children>
                                 <MenuBar  AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                     <menus>
                                         <Menu text="File">
@@ -48,20 +46,12 @@
                                         </Menu>
                                     </menus>
                                 </MenuBar>
-                            </children>
-                        </AnchorPane>
-    <!--_____________________________________________________________________________________________________________-->
-                        <AnchorPane minHeight="31">
-                            <children>
-
-                            </children>
-                        </AnchorPane>
 <!--_________________________________________________________________________________________________________________-->
                     </items>
                 </SplitPane>
             </AnchorPane>
 <!--_________________________________________________________________________________________________________________-->
-            <AnchorPane minHeight="821.5" minWidth="0.0" prefHeight="1600.0" prefWidth="900.0">
+            <AnchorPane minHeight="863" minWidth="0.0" prefHeight="1600.0" prefWidth="900.0">
                 <children>
                     <SplitPane dividerPositions="0.15" orientation="HORIZONTAL" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" >
                         <items>

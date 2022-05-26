@@ -12,8 +12,13 @@
             fx:controller="com.example.tourplanner.controllers.ListController"
             prefHeight="400.0" prefWidth="600.0">
 
+    <ToolBar AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" prefHeight="40.0" prefWidth="318.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+        <Pane HBox.hgrow="ALWAYS" />
+        <Button text="Search" layoutX="80" layoutY="790" onAction="#onSearchButtonClick"></Button>
+    </ToolBar>
 
-    <ListView  fx:id="tourListView" onMouseClicked="#handleMouseClick" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+    <ListView  fx:id="tourListView" onMouseClicked="#handleMouseClick" AnchorPane.topAnchor="40.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 
     </ListView>
 

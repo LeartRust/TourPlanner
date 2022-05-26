@@ -29,6 +29,7 @@ public class DetailsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tourName.textProperty().bindBidirectional(viewModel.getTourName());
+        //tourName.setText("test");
         tourDescription.textProperty().bindBidirectional(viewModel.getTourDescription());
         tourFrom.textProperty().bindBidirectional(viewModel.getTourFrom());
         tourTo.textProperty().bindBidirectional(viewModel.getTourTo());
@@ -39,6 +40,7 @@ public class DetailsController implements Initializable {
 
     public void initData(String selectedItem) {
         viewModel.setTourDetails(selectedItem);
-
+        //tourName.setText("test2");
+        System.out.println("TEST");
     }
 }
