@@ -13,10 +13,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -32,7 +29,8 @@ import java.util.ResourceBundle;
 
 public class ListController implements Initializable {
 
-
+    @FXML
+    private TextField searchfield;
     @FXML
     private ListView<String> tourListView = new ListView<String>();
 
@@ -49,6 +47,30 @@ public class ListController implements Initializable {
 
         ArrayList<TourModel> toursList = bl.getTours();
         toursList.stream().forEach(tour -> tourListView.getItems().add(tour.getTourName()));
+        tourListView.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> stringListView) {
+                return new ButtonCell();
+            }
+        });
+
+    }
+
+    public void filterList(String searchName){
+        tourListView.getItems().clear();
+
+        ArrayList<TourModel> toursList = bl.getTours();
+        toursList.stream().forEach(tour ->
+        {
+            if(searchName.isEmpty()==false){
+                if(tour.getTourName().equals(searchName)){
+                    tourListView.getItems().add(tour.getTourName());
+                }
+            }else{
+                tourListView.getItems().add(tour.getTourName());
+            }
+
+        });
         tourListView.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override
             public ListCell<String> call(ListView<String> stringListView) {
@@ -90,6 +112,7 @@ public class ListController implements Initializable {
     }
 
     public void onSearchButtonClick(ActionEvent actionEvent) {
+        filterList(searchfield.getText());
     }
 
 
