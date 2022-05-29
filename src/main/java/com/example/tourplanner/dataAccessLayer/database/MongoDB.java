@@ -12,6 +12,8 @@ import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -21,12 +23,24 @@ public class MongoDB implements IMongoDB {
 
     Properties prop=new Properties();
 
-    //FileInputStream ip= new FileInputStream("src/main/resources/com/example/tourplanner/config.properties");
+    FileInputStream ip;
 
-    //prop.load(ip);
-    MongoClient client = MongoClients.create("mongodb://localhost:27017");
-    MongoDatabase database = client.getDatabase("TourPlanner");
-    MongoCollection<Document> tours = database.getCollection("Tours");
+    {
+        try {
+            ip = new FileInputStream("src/main/resources/com/example/tourplanner/config.properties");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            prop.load(ip);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    MongoClient client = MongoClients.create(prop.getProperty("connection"));
+    MongoDatabase database = client.getDatabase(prop.getProperty("databaseName"));
+    MongoCollection<Document> tours = database.getCollection(prop.getProperty("collectionName"));
 
     public void createDb(){
         //TODO manage mongodb imports, somehow not working sometimes
