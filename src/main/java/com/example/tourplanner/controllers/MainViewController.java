@@ -23,7 +23,7 @@ private ListController listController;
     }
 
     public void onHelloButtonClick(ActionEvent actionEvent) {
-        listController.getSelectedTour();
+        //listController.getSelectedTour();
         detailsController.initData(listController.getSelectedTour());
     }
 }

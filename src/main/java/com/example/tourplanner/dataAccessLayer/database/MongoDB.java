@@ -11,11 +11,19 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import static com.mongodb.client.model.Filters.eq;
 
 public class MongoDB implements IMongoDB {
+
+    Properties prop=new Properties();
+
+    //FileInputStream ip= new FileInputStream("src/main/resources/com/example/tourplanner/config.properties");
+
+    //prop.load(ip);
     MongoClient client = MongoClients.create("mongodb://localhost:27017");
     MongoDatabase database = client.getDatabase("TourPlanner");
     MongoCollection<Document> tours = database.getCollection("Tours");
