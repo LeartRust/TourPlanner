@@ -1,12 +1,15 @@
 package com.example.tourplanner.controllers;
 
+import com.example.tourplanner.reports.DetailsReport;
 import com.example.tourplanner.viewmodel.CreateTourViewModel;
 import com.example.tourplanner.viewmodel.DetailsViewModel;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -44,4 +47,14 @@ public class DetailsController implements Initializable {
         System.out.println("TEST");
     }
 
+    public void onReportButtonClick(ActionEvent actionEvent) {
+        DetailsReport report = new DetailsReport();
+        try {
+            //report.createPdf(tourName.getText(), tourDescription.getText(), tourFrom.getText(), tourTo.getText(), tourTransportType.getText(), tourDistance.getText());
+            report.createPdf("Trip to Madrid", "this is the tour description", "Vienna", "Madrid", "Plane", "1000km");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

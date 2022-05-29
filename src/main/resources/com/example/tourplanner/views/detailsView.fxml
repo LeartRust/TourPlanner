@@ -57,6 +57,9 @@
 
     <Label styleClass="InfoLabel" text="Tour Distance"/>
     <Label styleClass="Label" maxWidth="100" wrapText="true" fx:id="tourDistance" text="TestDistance" ></Label>
+
+    <Button text="create Report" layoutX="80" onAction="#onReportButtonClick"></Button>
+
 </VBox>
 
 

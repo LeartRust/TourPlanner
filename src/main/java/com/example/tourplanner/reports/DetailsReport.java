@@ -3,12 +3,15 @@ package com.example.tourplanner.reports;
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.pdf.*;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.properties.UnitValue;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
 
 import java.io.IOException;
 
@@ -18,25 +21,32 @@ public class DetailsReport {
     public static final String GOOGLE_MAPS_PNG = "./google_maps.png";
     public static final String TARGET_PDF = "target.pdf";
 
-    public void createPdf() throws IOException {
+    public void createPdf(String tourName, String tourDescription, String tourFrom, String tourTo, String tourTransportType, String tourDistance) throws IOException {
+        System.out.println("TEST PDF:" + tourName);
         PdfWriter writer = new PdfWriter(TARGET_PDF);
         PdfDocument pdf = new PdfDocument(writer);
         Document document = new Document(pdf);
 
-        Paragraph loremIpsumHeader = new Paragraph("Lorem Ipsum header...")
+        Paragraph tourHeader = new Paragraph("Detailed PDF about a tour")
                 .setFont(PdfFontFactory.createFont(StandardFonts.HELVETICA))
                 .setFontSize(14)
                 .setBold()
                 .setFontColor(ColorConstants.RED);
-        document.add(loremIpsumHeader);
-        document.add(new Paragraph(LOREM_IPSUM_TEXT));
-
-        Paragraph listHeader = new Paragraph("Lorem Ipsum ...")
+        document.add(tourHeader);
+        document.add(new Paragraph(tourName));
+        document.add(new Paragraph(tourDescription));
+        document.add(new Paragraph(tourFrom));
+        document.add(new Paragraph(tourTo));
+        document.add(new Paragraph(tourTransportType));
+        document.add(new Paragraph(tourDistance));
+        /*Paragraph p = new Paragraph("dasd");
+        p.setBackgroundColor();*/
+/*        Paragraph listHeader = new Paragraph("Lorem Ipsum ...")
                 .setFont(PdfFontFactory.createFont(StandardFonts.TIMES_BOLD))
                 .setFontSize(14)
                 .setBold()
-                .setFontColor(ColorConstants.BLUE);
-        List list = new List()
+                .setFontColor(ColorConstants.BLUE);*/
+/*        List list = new List()
                 .setSymbolIndent(12)
                 .setListSymbol("\u2022")
                 .setFont(PdfFontFactory.createFont(StandardFonts.TIMES_BOLD));
@@ -45,9 +55,9 @@ public class DetailsReport {
                 .add(new ListItem("lorem ipsum 3"))
                 .add(new ListItem("lorem ipsum 4"))
                 .add(new ListItem("lorem ipsum 5"))
-                .add(new ListItem("lorem ipsum 6"));
-        document.add(listHeader);
-        document.add(list);
+                .add(new ListItem("lorem ipsum 6"));*/
+        //document.add(listHeader);
+/*        document.add(list);
 
         Paragraph tableHeader = new Paragraph("Lorem Ipsum Table ...")
                 .setFont(PdfFontFactory.createFont(StandardFonts.TIMES_ROMAN))
@@ -65,16 +75,16 @@ public class DetailsReport {
         table.addCell("lorem 2");
         table.addCell("lorem 3");
         table.addCell("lorem 4");
-        document.add(table);
+        document.add(table);*/
 
-        document.add(new AreaBreak());
+/*        document.add(new AreaBreak());
 
         Paragraph imageHeader = new Paragraph("Lorem Ipsum Image ...")
                 .setFont(PdfFontFactory.createFont(StandardFonts.TIMES_ROMAN))
                 .setFontSize(18)
                 .setBold()
                 .setFontColor(ColorConstants.GREEN);
-        document.add(imageHeader);
+        document.add(imageHeader);*/
 /*
         ImageData imageData = ImageDataFactory.create(GOOGLE_MAPS_PNG);
         document.add(new Image(imageData));
@@ -86,7 +96,6 @@ public class DetailsReport {
     private static Cell getHeaderCell(String s) {
         return new Cell().add(new Paragraph(s)).setBold().setBackgroundColor(ColorConstants.GRAY);
     }
-
 
 
 }
