@@ -1,11 +1,13 @@
 package com.example.tourplanner;
 
 import com.example.tourplanner.dataAccessLayer.database.MongoDB;
+import com.example.tourplanner.reports.DetailsReport;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class main extends Application {
@@ -19,13 +21,16 @@ public class main extends Application {
         stage.setTitle("Tour-Planner");
         stage.setScene(scene);
         stage.show();
-        //TODO Database!
-        MongoDB dbTest = new MongoDB();
-        dbTest.createDb();
     }
 
 
     public static void main(String[] args) {
+//        DetailsReport report = new DetailsReport();
+//        try {
+//            report.createPdf();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         launch();
     }
 }

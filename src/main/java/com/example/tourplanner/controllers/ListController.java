@@ -63,7 +63,7 @@ public class ListController implements Initializable {
         toursList.stream().forEach(tour ->
         {
             if(searchName.isEmpty()==false){
-                if(tour.getTourName().equals(searchName)){
+                if(tour.getTourName().contains(searchName)){
                     tourListView.getItems().add(tour.getTourName());
                 }
             }else{

@@ -9,6 +9,9 @@ module com.example.tourplanner {
     requires org.mongodb.driver.sync.client;
     requires org.mongodb.driver.core;
     requires org.mongodb.bson;
+    requires io;
+    requires kernel;
+    requires layout;
 
     opens com.example.tourplanner to javafx.fxml;
     exports com.example.tourplanner;

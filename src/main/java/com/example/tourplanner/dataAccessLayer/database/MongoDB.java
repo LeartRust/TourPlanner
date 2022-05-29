@@ -44,7 +44,7 @@ public class MongoDB implements IMongoDB {
 
     public void createDb(){
         //TODO manage mongodb imports, somehow not working sometimes
-        //TODO make tourName unique
+        //TODO make tourName unique https://www.educba.com/mongodb-unique/
 
         //DB database = mongoClient.getDB("TheDatabaseName");
 
