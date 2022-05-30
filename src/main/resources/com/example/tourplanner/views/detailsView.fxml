@@ -64,7 +64,9 @@
 
                         <Button text="create Report" layoutX="80" onAction="#onReportButtonClick"></Button>
 
+                        <Label onDragOver="#onFileDragOver" onDragDropped="#onFileDropped" styleClass="InfoLabel" maxWidth="100" wrapText="true" fx:id="importLabel" text="Drop your import file here" ></Label>
                     </VBox>
+
                 </children>
             </AnchorPane>
             <!--_____________________________________________________________________________________________________________-->

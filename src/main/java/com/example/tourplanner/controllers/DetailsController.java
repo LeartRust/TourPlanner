@@ -1,5 +1,6 @@
 package com.example.tourplanner.controllers;
 
+import com.example.tourplanner.businessLogic.BusinessLogicLayer;
 import com.example.tourplanner.reports.DetailsReport;
 import com.example.tourplanner.viewmodel.CreateTourViewModel;
 import com.example.tourplanner.viewmodel.DetailsViewModel;
@@ -8,6 +9,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,6 +32,8 @@ public class DetailsController implements Initializable {
     private Label  tourTransportType;
     @FXML
     private Label tourDistance;
+
+    static BusinessLogicLayer bl = new BusinessLogicLayer();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -57,4 +63,28 @@ public class DetailsController implements Initializable {
         }
 
     }
+
+    public void onFileDropped(DragEvent event) {
+        Dragboard db = event.getDragboard();
+        boolean success = false;
+        if (db.hasFiles()) {
+            System.out.println(db.getFiles().toString());
+            success = true;
+        }
+        /* let the source know whether the string was successfully
+         * transferred and used */
+        event.setDropCompleted(success);
+
+        event.consume();
+    }
+
+    public void onFileDragOver(DragEvent event) {
+        if (event.getDragboard().hasFiles()) {
+            /* allow for both copying and moving, whatever user chooses */
+            event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+        }
+        bl.importTours();
+        event.consume();
+    }
+
 }
