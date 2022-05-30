@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import javafx.geometry.Insets?>
+<?import java.net.URL?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.tourplanner.controllers.CreateTourLogController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <stylesheets>
+        <URL value="@../styles/DemoStyles.css"/>
+    </stylesheets>
+
+    <Label text="create a new tour:"/>
+    <Label text="Date/Time"/>
+    <TextField fx:id="dateTime" maxWidth="200" ></TextField>
+    <Label text="Comment"/>
+    <TextField fx:id="comment" maxWidth="200" ></TextField>
+    <Label text="Difficulty"/>
+    <TextField fx:id="difficulty" maxWidth="200" ></TextField>
+    <Label text="Total time"/>
+    <TextField fx:id="totalTime" maxWidth="200" ></TextField>
+    <Label text="Rating"/>
+    <TextField fx:id="rating" maxWidth="200" ></TextField>
+
+    <Button fx:id="createTourLogButton" text="create tour log!" styleClass="mainButton" onAction="#onCreateTourLogButtonClick"/>
+    <!--
+        <fx:include source="listView.fxml"/>
+    -->
+
+</VBox>
