@@ -89,7 +89,7 @@ public class MongoDB implements IMongoDB {
     }
 
     public void exportTours() throws IOException {
-        Runtime.getRuntime().exec("mongoexport --host localhost --port 27017 --db TourPlanner --collection Tours --out Tours.json");
+        Runtime.getRuntime().exec("mongoexport --host localhost --port 27017 --db TourPlanner --collection Tours --out ../TourPlanner/src/main/resources/com/example/tourplanner/exports/Tours.json");
     }
 
     public void importTours(){

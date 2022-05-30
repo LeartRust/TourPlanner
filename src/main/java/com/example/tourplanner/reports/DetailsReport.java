@@ -21,11 +21,11 @@ public class DetailsReport {
 
     public static final String LOREM_IPSUM_TEXT = "Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     public static final String GOOGLE_MAPS_PNG = "./google_maps.png";
-    public static final String TARGET_PDF = "target.pdf";
+    public static final String PDF_DIRECTORY = "../TourPlanner/src/main/resources/com/example/tourplanner/reports/";
 
     public void createPdf(String tourName, String tourDescription, String tourFrom, String tourTo, String tourTransportType, String tourDistance) throws IOException {
         System.out.println("TEST PDF:" + tourName);
-        PdfWriter writer = new PdfWriter(TARGET_PDF);
+        PdfWriter writer = new PdfWriter(PDF_DIRECTORY + tourName+".pdf");
         PdfDocument pdf = new PdfDocument(writer);
         Document document = new Document(pdf);
 
