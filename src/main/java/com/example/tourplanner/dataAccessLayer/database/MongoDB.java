@@ -102,10 +102,11 @@ public class MongoDB implements IMongoDB {
             int batch = 100;
             List<InsertOneModel<Document>> docs = new ArrayList<>();
 
-            try (BufferedReader br = new BufferedReader(new FileReader("Tours.json"))) {
+            try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/com/example/tourplanner/dataAccessLayer/database/Tours.json"))) {
                 String line;
                 while ((line = br.readLine()) != null) {
                     docs.add(new InsertOneModel<>(Document.parse(line)));
+                    System.out.println(docs.toString());
                     count++;
                     if (count == batch) {
                         tours.bulkWrite(docs, new BulkWriteOptions().ordered(false));
@@ -118,8 +119,7 @@ public class MongoDB implements IMongoDB {
             }
 
             if (count > 0) {
-                BulkWriteResult bulkWriteResult=  tours.bulkWrite(docs, new BulkWriteOptions().ordered(false));
-                System.out.println("Inserted" + bulkWriteResult);
+                tours.bulkWrite(docs, new BulkWriteOptions().ordered(false));
             }
 
         } catch (MongoWriteException e) {

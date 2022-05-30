@@ -66,28 +66,10 @@
     <!--_____________________________________________________________________________________________________________-->
                             <AnchorPane minWidth="1300.0">
                                 <children>
-                                    <SplitPane dividerPositions="0.7" orientation="VERTICAL" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" >
-                                        <items>
-                                            <!--_____________________________________________________________________________________________________________-->
-                                            <AnchorPane>
-                                                <children>
-                                                    <!--<ImageView>
-                                                    <Image url="@../pictures/TestTourMap.jpg" backgroundLoading="true" ></Image>
-                                                    </ImageView>-->
+
                                                     <fx:include source="detailsView.fxml" AnchorPane.topAnchor="0.0"
                                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                                                                 AnchorPane.bottomAnchor="0.0" fx:id="details"/>
-                                                </children>
-                                            </AnchorPane>
-                                            <!--_____________________________________________________________________________________________________________-->
-                                            <AnchorPane>
-                                                <children>
-
-                                                </children>
-                                            </AnchorPane>
-                                            <!--_____________________________________________________________________________________________________________-->
-                                        </items>
-                                    </SplitPane>
 
                                 </children>
                             </AnchorPane>
