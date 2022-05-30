@@ -40,6 +40,13 @@ public class ListController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addToList();
+        /*try {
+            bl.exportTours();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+        bl.importTours();
     }
 
     public void addToList(){

@@ -5,6 +5,7 @@ import com.example.tourplanner.dataAccessLayer.database.MongoDB;
 import com.example.tourplanner.dataAccessLayer.database.tourInfo;
 import com.example.tourplanner.models.TourModel;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class BusinessLogicLayer {
@@ -27,6 +28,13 @@ public class BusinessLogicLayer {
         this.database = MongoDB.getDatabase();
     }
 
+    public void exportTours() throws IOException {
+        this.database.exportTours();
+    };
+
+    public void importTours(){
+        this.database.importTours();
+    }
 
     public TourModel getTour(String tour) {
         return this.database.getTour(tour);

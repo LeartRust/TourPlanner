@@ -50,8 +50,8 @@ public class DetailsController implements Initializable {
     public void onReportButtonClick(ActionEvent actionEvent) {
         DetailsReport report = new DetailsReport();
         try {
-            //report.createPdf(tourName.getText(), tourDescription.getText(), tourFrom.getText(), tourTo.getText(), tourTransportType.getText(), tourDistance.getText());
-            report.createPdf("Trip to Madrid", "this is the tour description", "Vienna", "Madrid", "Plane", "1000km");
+            report.createPdf(tourName.getText(), tourDescription.getText(), tourFrom.getText(), tourTo.getText(), tourTransportType.getText(), tourDistance.getText());
+            //report.createPdf("Trip to Madrid", "this is the tour description", "Vienna", "Madrid", "Plane", "1000km");
         } catch (IOException e) {
             e.printStackTrace();
         }

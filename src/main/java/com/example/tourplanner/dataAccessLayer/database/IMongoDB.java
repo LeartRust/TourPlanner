@@ -2,6 +2,7 @@ package com.example.tourplanner.dataAccessLayer.database;
 
 import com.example.tourplanner.models.TourModel;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public interface IMongoDB {
@@ -12,4 +13,8 @@ public interface IMongoDB {
     void deleteTour(String item);
 
     TourModel getTour(String tourName);
+
+    void exportTours() throws IOException;
+
+    void importTours();
 }

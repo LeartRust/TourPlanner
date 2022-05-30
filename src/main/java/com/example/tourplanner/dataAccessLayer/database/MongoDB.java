@@ -2,8 +2,12 @@ package com.example.tourplanner.dataAccessLayer.database;
 
 import com.example.tourplanner.models.TourModel;
 import com.mongodb.MongoException;
+import com.mongodb.MongoWriteException;
+import com.mongodb.bulk.BulkWriteResult;
 import com.mongodb.client.*;
 
+import com.mongodb.client.model.BulkWriteOptions;
+import com.mongodb.client.model.InsertOneModel;
 import com.mongodb.client.model.Projections;
 import com.mongodb.client.model.Sorts;
 import com.mongodb.client.result.DeleteResult;
@@ -11,10 +15,9 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import static com.mongodb.client.model.Filters.eq;
@@ -82,12 +85,52 @@ public class MongoDB implements IMongoDB {
                 .append("tourDistance", tourDistance)
                 .append("ages", new Document("min", 5));
         ObjectId id = tours.insertOne(tour).getInsertedId().asObjectId().getValue();
+
+    }
+
+    public void exportTours() throws IOException {
+        Runtime.getRuntime().exec("mongoexport --host localhost --port 27017 --db TourPlanner --collection Tours --out Tours.json");
+    }
+
+    public void importTours(){
+        try {
+            //drop previous import
+            tours.drop();
+
+            //Bulk Approach:
+            int count = 0;
+            int batch = 100;
+            List<InsertOneModel<Document>> docs = new ArrayList<>();
+
+            try (BufferedReader br = new BufferedReader(new FileReader("Tours.json"))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    docs.add(new InsertOneModel<>(Document.parse(line)));
+                    count++;
+                    if (count == batch) {
+                        tours.bulkWrite(docs, new BulkWriteOptions().ordered(false));
+                        docs.clear();
+                        count = 0;
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            if (count > 0) {
+                BulkWriteResult bulkWriteResult=  tours.bulkWrite(docs, new BulkWriteOptions().ordered(false));
+                System.out.println("Inserted" + bulkWriteResult);
+            }
+
+        } catch (MongoWriteException e) {
+            System.out.println("Error");
+        }
+
     }
 
     @Override
     public ArrayList<TourModel> getTours(){
         ArrayList<TourModel> toursList = new ArrayList<>();
-
         tours.find().forEach(document ->  toursList.add(new TourModel(
                 document.get("_id").toString(),
                 document.get("tourName").toString(),
@@ -120,7 +163,6 @@ public class MongoDB implements IMongoDB {
 
 
     public static IMongoDB getDatabase(){
-
          return new MongoDB();
     }
 

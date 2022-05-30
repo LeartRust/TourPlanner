@@ -16,6 +16,8 @@ import javafx.scene.control.Label;
 import java.io.IOException;
 
 public class DetailsReport {
+    //TODO add image and logs to report
+    //TODO style report
 
     public static final String LOREM_IPSUM_TEXT = "Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     public static final String GOOGLE_MAPS_PNG = "./google_maps.png";
@@ -33,12 +35,12 @@ public class DetailsReport {
                 .setBold()
                 .setFontColor(ColorConstants.RED);
         document.add(tourHeader);
-        document.add(new Paragraph(tourName));
-        document.add(new Paragraph(tourDescription));
-        document.add(new Paragraph(tourFrom));
-        document.add(new Paragraph(tourTo));
-        document.add(new Paragraph(tourTransportType));
-        document.add(new Paragraph(tourDistance));
+        document.add(new Paragraph("Tour Name: " + tourName));
+        document.add(new Paragraph("Description: " + tourDescription));
+        document.add(new Paragraph("From: " +tourFrom));
+        document.add(new Paragraph("To: " + tourTo));
+        document.add(new Paragraph("Transport Type: " +tourTransportType));
+        document.add(new Paragraph("Distance: " + tourDistance));
         /*Paragraph p = new Paragraph("dasd");
         p.setBackgroundColor();*/
 /*        Paragraph listHeader = new Paragraph("Lorem Ipsum ...")
