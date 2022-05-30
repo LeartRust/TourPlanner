@@ -2,6 +2,7 @@ package com.example.tourplanner.dataAccessLayer.database;
 
 import com.example.tourplanner.models.TourLogModel;
 import com.example.tourplanner.models.TourModel;
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoException;
 import com.mongodb.MongoWriteException;
 import com.mongodb.bulk.BulkWriteResult;
@@ -145,7 +146,13 @@ public class MongoDB implements IMongoDB {
 
     @Override
     public void deleteTourLog(String item) {
-        //TODO delete tourLog, by which identifier?
+        Bson query = eq("_id", new ObjectId(item));
+        try {
+            DeleteResult result = tourLogs.deleteOne(query);
+            System.out.println("Deleted document count: " + result.getDeletedCount());
+        } catch (MongoException me) {
+            System.err.println("Unable to delete due to an error: " + me);
+        }
     }
 
     @Override

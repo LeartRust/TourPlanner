@@ -61,8 +61,6 @@ public class DetailsController implements Initializable {
         tourTo.textProperty().bindBidirectional(viewModel.getTourTo());
         tourTransportType.textProperty().bindBidirectional(viewModel.getTourTransportType());
         tourDistance.textProperty().bindBidirectional(viewModel.getTourDistance());
-
-        addToList();
     }
 
     public void initData(String selectedItem) {
@@ -109,7 +107,15 @@ public class DetailsController implements Initializable {
         tourLogListView.getItems().clear();
 
         ArrayList<TourLogModel> tourLogsList = bl.getTourLogs();
-        tourLogsList.stream().forEach(tourLog -> tourLogListView.getItems().add(tourLog));
+
+        tourLogsList.stream().forEach(tourLog ->
+        {
+                if(tourLog.getTourName().equals(tourName.getText())){
+                    tourLogListView.getItems().add(tourLog);
+                }
+        });
+
+
         tourLogListView.setCellFactory(new Callback<ListView<TourLogModel>, ListCell<TourLogModel>>() {
             @Override
             public ListCell<TourLogModel> call(ListView<TourLogModel> stringListView) {
@@ -127,7 +133,7 @@ public class DetailsController implements Initializable {
 
         //TODO set Max width to Screen
         //stage.setMaxWidth(Screen);
-        stage.setTitle(tourName.toString());
+        stage.setTitle(tourName.getText());
         stage.setScene(scene);
         stage.show();
     }
@@ -150,7 +156,7 @@ public class DetailsController implements Initializable {
                 Label dateTimeLabel = new Label("Date/Time:");
                 dateTimeLabel.setStyle("-fx-font-weight: bold;");
                 root.getChildren().add(dateTimeLabel);
-                root.getChildren().add(new Label(item.getTourName()));
+                root.getChildren().add(new Label(item.getDateTime()));
 
                 Label commentLabel = new Label("Comment:");
                 commentLabel.setStyle("-fx-font-weight: bold;");
@@ -180,7 +186,7 @@ public class DetailsController implements Initializable {
                 button.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent arg0) {
-                        bl.deleteTour(item.getTourName());
+                        bl.deleteTourLog(item.getLogId());
                     }
                 });
                 root.getChildren().add( button);

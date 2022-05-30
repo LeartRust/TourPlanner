@@ -76,7 +76,7 @@
             <!--_____________________________________________________________________________________________________________-->
             <AnchorPane>
                 <children>
-                    <ListView  fx:id="tourlogListView" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
+                    <ListView  fx:id="tourLogListView" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
 
                     </ListView>
 
