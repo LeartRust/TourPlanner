@@ -87,4 +87,9 @@ public class DetailsController implements Initializable {
         event.consume();
     }
 
+    public void onAddTourlogButtonClick(ActionEvent actionEvent) {
+    }
+
+    public void onRefreshButtonClick(ActionEvent actionEvent) {
+    }
 }
