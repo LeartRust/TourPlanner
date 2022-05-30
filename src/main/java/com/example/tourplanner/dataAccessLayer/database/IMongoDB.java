@@ -17,4 +17,6 @@ public interface IMongoDB {
     void exportTours() throws IOException;
 
     void importTours();
+
+    void addLog(String tourName, String dateTime, String comment, String difficulty, String totalTime, String rating);
 }

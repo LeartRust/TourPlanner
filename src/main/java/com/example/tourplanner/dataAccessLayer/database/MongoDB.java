@@ -43,7 +43,8 @@ public class MongoDB implements IMongoDB {
 
     MongoClient client = MongoClients.create(prop.getProperty("connection"));
     MongoDatabase database = client.getDatabase(prop.getProperty("databaseName"));
-    MongoCollection<Document> tours = database.getCollection(prop.getProperty("collectionName"));
+    MongoCollection<Document> tours = database.getCollection(prop.getProperty("toursCollection"));
+    MongoCollection<Document> tourLogs = database.getCollection(prop.getProperty("tourLogsCollection"));
 
     public void createDb(){
         //TODO manage mongodb imports, somehow not working sometimes
@@ -126,6 +127,19 @@ public class MongoDB implements IMongoDB {
             System.out.println("Error");
         }
 
+    }
+
+    @Override
+    public void addLog(String tourName, String dateTime, String comment, String difficulty, String totalTime, String rating) {
+        Document log = new Document()
+                .append("tourName", tourName)
+                .append("tourDescription", dateTime)
+                .append("tourFrom", comment)
+                .append("tourTo", difficulty)
+                .append("tourTransportType", totalTime)
+                .append("tourDistance", rating)
+                .append("ages", new Document("min", 5));
+        tourLogs.insertOne(log).getInsertedId().asObjectId().getValue();
     }
 
     @Override

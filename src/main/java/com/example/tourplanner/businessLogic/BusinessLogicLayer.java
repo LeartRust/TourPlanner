@@ -2,6 +2,7 @@ package com.example.tourplanner.businessLogic;
 
 import com.example.tourplanner.dataAccessLayer.database.IMongoDB;
 import com.example.tourplanner.dataAccessLayer.database.MongoDB;
+import com.example.tourplanner.dataAccessLayer.database.loginfo;
 import com.example.tourplanner.dataAccessLayer.database.tourInfo;
 import com.example.tourplanner.models.TourModel;
 
@@ -34,6 +35,10 @@ public class BusinessLogicLayer {
 
     public void importTours(){
         this.database.importTours();
+    }
+
+    public void addTourLog(loginfo log){
+        this.database.addLog(log.tourName(), log.dateTime(), log.comment(), log.difficulty(), log.totalTime(), log.rating());
     }
 
     public TourModel getTour(String tour) {
