@@ -1,5 +1,6 @@
 package com.example.tourplanner.dataAccessLayer.database;
 
+import com.example.tourplanner.models.TourLogModel;
 import com.example.tourplanner.models.TourModel;
 import com.mongodb.MongoException;
 import com.mongodb.MongoWriteException;
@@ -133,11 +134,11 @@ public class MongoDB implements IMongoDB {
     public void addTourLog(String tourName, String dateTime, String comment, String difficulty, String totalTime, String rating) {
         Document log = new Document()
                 .append("tourName", tourName)
-                .append("tourDescription", dateTime)
-                .append("tourFrom", comment)
-                .append("tourTo", difficulty)
-                .append("tourTransportType", totalTime)
-                .append("tourDistance", rating)
+                .append("dateTime", dateTime)
+                .append("comment", comment)
+                .append("difficulty", difficulty)
+                .append("totalTime", totalTime)
+                .append("rating", rating)
                 .append("ages", new Document("min", 5));
         tourLogs.insertOne(log).getInsertedId().asObjectId().getValue();
     }
@@ -145,6 +146,21 @@ public class MongoDB implements IMongoDB {
     @Override
     public void deleteTourLog(String item) {
         //TODO delete tourLog, by which identifier?
+    }
+
+    @Override
+    public ArrayList<TourLogModel> getTourLogs() {
+        ArrayList<TourLogModel> tourLogsList = new ArrayList<>();
+        tourLogs.find().forEach(document ->  tourLogsList.add(new TourLogModel(
+                document.get("_id").toString(),
+                document.get("tourName").toString(),
+                document.get("dateTime").toString(),
+                document.get("comment").toString(),
+                document.get("difficulty").toString(),
+                document.get("totalTime").toString(),
+                document.get("rating").toString())));
+
+        return tourLogsList;
     }
 
     @Override
@@ -158,8 +174,6 @@ public class MongoDB implements IMongoDB {
                 document.get("tourTo").toString(),
                 document.get("tourTransportType").toString(),
                 document.get("tourDistance").toString())));
-
-        getTour("CL-Final");
 
         return toursList;
     }

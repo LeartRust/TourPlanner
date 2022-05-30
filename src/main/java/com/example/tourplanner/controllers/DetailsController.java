@@ -2,6 +2,7 @@ package com.example.tourplanner.controllers;
 
 import com.example.tourplanner.businessLogic.BusinessLogicLayer;
 import com.example.tourplanner.main;
+import com.example.tourplanner.models.TourLogModel;
 import com.example.tourplanner.models.TourModel;
 import com.example.tourplanner.reports.DetailsReport;
 import com.example.tourplanner.viewmodel.CreateTourViewModel;
@@ -46,7 +47,7 @@ public class DetailsController implements Initializable {
     private Label tourDistance;
 
     @FXML
-    private ListView<String> tourLogListView = new ListView<String>();
+    private ListView<TourLogModel> tourLogListView = new ListView<TourLogModel>();
 
     static BusinessLogicLayer bl = new BusinessLogicLayer();
 
@@ -106,11 +107,11 @@ public class DetailsController implements Initializable {
     public void addToList(){
         tourLogListView.getItems().clear();
 
-        ArrayList<TourModel> toursList = bl.getTours();
-        toursList.stream().forEach(tour -> tourLogListView.getItems().add(tour.getTourName()));
-        tourLogListView.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+        ArrayList<TourLogModel> tourLogsList = bl.getTourLogs();
+        tourLogsList.stream().forEach(tourLog -> tourLogListView.getItems().add(tourLog));
+        tourLogListView.setCellFactory(new Callback<ListView<TourLogModel>, ListCell<TourLogModel>>() {
             @Override
-            public ListCell<String> call(ListView<String> stringListView) {
+            public ListCell<TourLogModel> call(ListView<TourLogModel> stringListView) {
                 return new ButtonCell();
             }
         });
@@ -119,7 +120,7 @@ public class DetailsController implements Initializable {
 
     public void onAddTourLogButtonClick(ActionEvent actionEvent) throws IOException {
         final Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("views/createTour.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("views/createTourLogView.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1600, 900);
         stage.setResizable(false);
 
@@ -136,10 +137,9 @@ public class DetailsController implements Initializable {
         addToList();
     }
 
-    static class ButtonCell extends ListCell<String>{
-
+    static class ButtonCell extends ListCell<TourLogModel>{
         @Override
-        public void updateItem(final String item, boolean empty) {
+        public void updateItem(final TourLogModel item, boolean empty) {
             super.updateItem(item, empty);
             if (item != null) {
 
@@ -147,10 +147,30 @@ public class DetailsController implements Initializable {
                 root.setAlignment(Pos.CENTER_LEFT);
                 root.setPadding(new Insets(5, 10, 5, 10));
 
+                Label dateTimeLabel = new Label("Date/Time:");
+                dateTimeLabel.setStyle("-fx-font-weight: bold;");
+                root.getChildren().add(dateTimeLabel);
+                root.getChildren().add(new Label(item.getTourName()));
 
-                root.getChildren().add(new Label(item));
-                root.getChildren().add(new Label("Datum:"));
-                root.getChildren().add(new Label(item));
+                Label commentLabel = new Label("Comment:");
+                commentLabel.setStyle("-fx-font-weight: bold;");
+                root.getChildren().add(commentLabel);
+                root.getChildren().add(new Label(item.getComment()));
+
+                Label difficultyLabel = new Label("Difficulty:");
+                difficultyLabel.setStyle("-fx-font-weight: bold;");
+                root.getChildren().add(difficultyLabel);
+                root.getChildren().add(new Label(item.getDifficulty()));
+
+                Label totalTimeLabel = new Label("Total time:");
+                totalTimeLabel.setStyle("-fx-font-weight: bold;");
+                root.getChildren().add(totalTimeLabel);
+                root.getChildren().add(new Label(item.getTotalTime()));
+
+                Label ratingLabel = new Label("Rating:");
+                ratingLabel.setStyle("-fx-font-weight: bold;");
+                root.getChildren().add(ratingLabel);
+                root.getChildren().add(new Label(item.getRating()));
 
                 Region region = new Region();
                 HBox.setHgrow(region, Priority.ALWAYS);
@@ -160,7 +180,7 @@ public class DetailsController implements Initializable {
                 button.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent arg0) {
-                        bl.deleteTour(item);
+                        bl.deleteTour(item.getTourName());
                     }
                 });
                 root.getChildren().add( button);

@@ -1,5 +1,6 @@
 package com.example.tourplanner.dataAccessLayer.database;
 
+import com.example.tourplanner.models.TourLogModel;
 import com.example.tourplanner.models.TourModel;
 
 import java.io.IOException;
@@ -23,4 +24,6 @@ public interface IMongoDB {
     void addTourLog(String tourName, String dateTime, String comment, String difficulty, String totalTime, String rating);
 
     void deleteTourLog(String item);
+
+    ArrayList<TourLogModel> getTourLogs();
 }

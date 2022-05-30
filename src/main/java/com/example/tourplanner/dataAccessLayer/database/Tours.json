@@ -1,5 +1,0 @@
-{"_id":{"$oid":"6274f189c50f4a42d997f625"},"tourName":"CL-Final","tourDescription":"Real vs Liverpool","tourFrom":"Vienna","tourTo":"Paris","tourTransportType":"Plane","tourDistance":"150km","ages":{"min":5}}
-{"_id":{"$oid":"6274f1ddc50f4a42d997f627"},"tourName":"Family Trip","tourDescription":"Family Trip to italy","tourFrom":"salzburg","tourTo":"milano","tourTransportType":"train","tourDistance":"100km","ages":{"min":5}}
-{"_id":{"$oid":"62853a92c94cb12de1bd52c9"},"tourName":"dasdad","tourDescription":"d","tourFrom":"d","tourTo":"d","tourTransportType":"dd","tourDistance":"d","ages":{"min":5}}
-{"_id":{"$oid":"629393b1d3808961f009ce4c"},"tourName":"Real cl finale","tourDescription":"ads","tourFrom":"wdfak","tourTo":"flökfdöal","tourTransportType":"fkaölfka","tourDistance":"fadlöfka","ages":{"min":5}}
-{"_id":{"$oid":"629393b1d3808961f009ce4e"},"tourName":"Test import","tourDescription":"ads","tourFrom":"wdfak","tourTo":"flökfdöal","tourTransportType":"fkaölfka","tourDistance":"fadlöfka","ages":{"min":5}}

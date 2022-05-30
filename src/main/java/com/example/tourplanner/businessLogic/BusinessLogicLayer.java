@@ -4,6 +4,7 @@ import com.example.tourplanner.dataAccessLayer.database.IMongoDB;
 import com.example.tourplanner.dataAccessLayer.database.MongoDB;
 import com.example.tourplanner.dataAccessLayer.database.loginfo;
 import com.example.tourplanner.dataAccessLayer.database.tourInfo;
+import com.example.tourplanner.models.TourLogModel;
 import com.example.tourplanner.models.TourModel;
 
 import java.io.IOException;
@@ -52,4 +53,7 @@ public class BusinessLogicLayer {
     }
 
 
+    public ArrayList<TourLogModel> getTourLogs() {
+        return this.database.getTourLogs();
+    }
 }
