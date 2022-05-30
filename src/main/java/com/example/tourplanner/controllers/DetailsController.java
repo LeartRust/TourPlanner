@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 public class DetailsController implements Initializable {
     private final DetailsViewModel viewModel = new DetailsViewModel();
@@ -136,7 +137,6 @@ public class DetailsController implements Initializable {
     public void onRefreshButtonClick(ActionEvent actionEvent) {
         addToList();
     }
-
     static class ButtonCell extends ListCell<TourLogModel>{
         @Override
         public void updateItem(final TourLogModel item, boolean empty) {
