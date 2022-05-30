@@ -46,7 +46,7 @@ public class DetailsController implements Initializable {
     private Label tourDistance;
 
     @FXML
-    private ListView<String> tourlogListView = new ListView<String>();
+    private ListView<String> tourLogListView = new ListView<String>();
 
     static BusinessLogicLayer bl = new BusinessLogicLayer();
 
@@ -104,11 +104,11 @@ public class DetailsController implements Initializable {
     }
 
     public void addToList(){
-        tourlogListView.getItems().clear();
+        tourLogListView.getItems().clear();
 
         ArrayList<TourModel> toursList = bl.getTours();
-        toursList.stream().forEach(tour -> tourlogListView.getItems().add(tour.getTourName()));
-        tourlogListView.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+        toursList.stream().forEach(tour -> tourLogListView.getItems().add(tour.getTourName()));
+        tourLogListView.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override
             public ListCell<String> call(ListView<String> stringListView) {
                 return new ButtonCell();
@@ -117,17 +117,15 @@ public class DetailsController implements Initializable {
 
     }
 
-    public void onAddTourlogButtonClick(ActionEvent actionEvent) throws IOException {
+    public void onAddTourLogButtonClick(ActionEvent actionEvent) throws IOException {
         final Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("views/createTour.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1600, 900);
         stage.setResizable(false);
 
-
-
         //TODO set Max width to Screen
         //stage.setMaxWidth(Screen);
-        stage.setTitle("Tour-Planner");
+        stage.setTitle(tourName.toString());
         stage.setScene(scene);
         stage.show();
     }

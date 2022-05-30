@@ -130,7 +130,7 @@ public class MongoDB implements IMongoDB {
     }
 
     @Override
-    public void addLog(String tourName, String dateTime, String comment, String difficulty, String totalTime, String rating) {
+    public void addTourLog(String tourName, String dateTime, String comment, String difficulty, String totalTime, String rating) {
         Document log = new Document()
                 .append("tourName", tourName)
                 .append("tourDescription", dateTime)
@@ -140,6 +140,11 @@ public class MongoDB implements IMongoDB {
                 .append("tourDistance", rating)
                 .append("ages", new Document("min", 5));
         tourLogs.insertOne(log).getInsertedId().asObjectId().getValue();
+    }
+
+    @Override
+    public void deleteTourLog(String item) {
+        //TODO delete tourLog, by which identifier?
     }
 
     @Override

@@ -13,8 +13,17 @@ public class BusinessLogicLayer {
 
     private final IMongoDB database;
 
+    public BusinessLogicLayer(){
+        this.database = MongoDB.getDatabase();
+    }
+
+    // Tour Methods
     public void addTour(tourInfo tour){
        this.database.addTour(tour.tourName(), tour.tourDescription(), tour.tourFrom(), tour.tourTo(), tour.tourTransportType(), tour.tourDistance());
+    }
+
+    public TourModel getTour(String tour) {
+        return this.database.getTour(tour);
     }
 
     public ArrayList<TourModel> getTours(){
@@ -25,10 +34,6 @@ public class BusinessLogicLayer {
         this.database.deleteTour(item);
     }
 
-    public BusinessLogicLayer(){
-        this.database = MongoDB.getDatabase();
-    }
-
     public void exportTours() throws IOException {
         this.database.exportTours();
     };
@@ -37,11 +42,14 @@ public class BusinessLogicLayer {
         this.database.importTours();
     }
 
+    // TourLog methods
+
     public void addTourLog(loginfo log){
-        this.database.addLog(log.tourName(), log.dateTime(), log.comment(), log.difficulty(), log.totalTime(), log.rating());
+        this.database.addTourLog(log.tourName(), log.dateTime(), log.comment(), log.difficulty(), log.totalTime(), log.rating());
+    }
+    public void deleteTourLog(String item) {
+        this.database.deleteTourLog(item);
     }
 
-    public TourModel getTour(String tour) {
-        return this.database.getTour(tour);
-    }
+
 }

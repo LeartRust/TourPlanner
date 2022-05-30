@@ -18,5 +18,9 @@ public interface IMongoDB {
 
     void importTours();
 
-    void addLog(String tourName, String dateTime, String comment, String difficulty, String totalTime, String rating);
+    
+    //
+    void addTourLog(String tourName, String dateTime, String comment, String difficulty, String totalTime, String rating);
+
+    void deleteTourLog(String item);
 }

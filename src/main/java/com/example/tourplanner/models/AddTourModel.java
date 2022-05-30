@@ -3,6 +3,7 @@ package com.example.tourplanner.models;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+//TODO DELETE THIS CLASS
 public class AddTourModel {
 
     private final StringProperty tourName;
