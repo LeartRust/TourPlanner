@@ -10,6 +10,7 @@
 <?import javafx.geometry.Insets?>
 <?import java.net.URL?>
 
+<?import javafx.scene.text.Text?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.tourplanner.controllers.CreateTourLogController">
     <padding>
@@ -20,8 +21,7 @@
     </stylesheets>
 
     <Label text="create a new tour:"/>
-    <Label text="Date/Time"/>
-    <TextField fx:id="dateTime" maxWidth="200" ></TextField>
+
     <Label text="Comment"/>
     <TextField fx:id="comment" maxWidth="200" ></TextField>
     <Label text="Difficulty"/>
@@ -32,6 +32,7 @@
     <TextField fx:id="rating" maxWidth="200" ></TextField>
     <Label text="Distance"/>
     <TextField fx:id="distance" maxWidth="200" ></TextField>
+    <Label fx:id="errorDistanceLabel" styleClass="ErrorText" text="Please enter a number!" visible="false"></Label>
 
     <Button fx:id="createTourLogButton" text="create tour log!" styleClass="mainButton" onAction="#onCreateTourLogButtonClick"/>
     <!--

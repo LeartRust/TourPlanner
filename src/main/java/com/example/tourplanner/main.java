@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class main extends Application {
     @Override
@@ -31,6 +33,9 @@ public class main extends Application {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
+        Logger logger = LogManager.getLogger(main.class.getName());
+        logger.error("erroor");
+
         launch();
     }
 }

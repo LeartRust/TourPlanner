@@ -5,7 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -17,8 +19,7 @@ public class CreateTourLogController implements Initializable {
     @FXML
     private Button createTourLogButton;
 
-    @FXML
-    private TextField dateTime;
+
     @FXML
     private TextField comment;
     @FXML
@@ -29,10 +30,12 @@ public class CreateTourLogController implements Initializable {
     private TextField rating;
     @FXML
     private TextField distance;
+    @FXML
+    private Label errorDistanceLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        dateTime.textProperty().bindBidirectional(viewModel.getDateTime());
+
         comment.textProperty().bindBidirectional(viewModel.getComment());
         difficulty.textProperty().bindBidirectional(viewModel.getDifficulty());
         totalTime.textProperty().bindBidirectional(viewModel.getTotalTime());
@@ -43,10 +46,17 @@ public class CreateTourLogController implements Initializable {
 
     @FXML
     public void onCreateTourLogButtonClick(ActionEvent actionEvent) {
-        Stage stage = (Stage) createTourLogButton.getScene().getWindow();
+        try {
+            Integer.parseInt(distance.getText());
+            Stage stage = (Stage) createTourLogButton.getScene().getWindow();
 
-        //TODO get tourName through title???
-        viewModel.saveTourLog(stage.getTitle());
-        stage.close();
+            //TODO get tourName through title???
+            viewModel.saveTourLog(stage.getTitle());
+            stage.close();
+        } catch(NumberFormatException e){
+            //TODO logger
+            errorDistanceLabel.setVisible(true);
+        }
+
     }
 }

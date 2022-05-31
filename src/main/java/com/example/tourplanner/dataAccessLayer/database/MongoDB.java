@@ -140,7 +140,7 @@ public class MongoDB implements IMongoDB {
                 .append("difficulty", difficulty)
                 .append("totalTime", totalTime)
                 .append("rating", rating)
-                .append("distance", distance)
+                .append("distance", Integer.parseInt(distance) )
                 .append("ages", new Document("min", 5));
         tourLogs.insertOne(log).getInsertedId().asObjectId().getValue();
     }
