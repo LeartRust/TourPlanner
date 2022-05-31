@@ -1,6 +1,8 @@
 package com.example.tourplanner.controllers;
 
 import com.example.tourplanner.viewmodel.CreateTourLogViewModel;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,20 +34,55 @@ public class CreateTourLogController implements Initializable {
     private TextField distance;
     @FXML
     private Label errorDistanceLabel;
+    @FXML
+    private Label errorRatingLabel;
+    @FXML
+    private Label errorTimeLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         comment.textProperty().bindBidirectional(viewModel.getComment());
         difficulty.textProperty().bindBidirectional(viewModel.getDifficulty());
         totalTime.textProperty().bindBidirectional(viewModel.getTotalTime());
         rating.textProperty().bindBidirectional(viewModel.getRating());
         distance.textProperty().bindBidirectional(viewModel.getDistance());
+
+        distance.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    distance.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+
+        rating.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    rating.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+
+        totalTime.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    totalTime.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
     }
+
 
 
     @FXML
     public void onCreateTourLogButtonClick(ActionEvent actionEvent) {
+
         try {
             Integer.parseInt(distance.getText());
             Stage stage = (Stage) createTourLogButton.getScene().getWindow();
@@ -56,6 +93,8 @@ public class CreateTourLogController implements Initializable {
         } catch(NumberFormatException e){
             //TODO logger
             errorDistanceLabel.setVisible(true);
+            errorTimeLabel.setVisible(true);
+            errorRatingLabel.setVisible(true);
         }
 
     }

@@ -26,11 +26,13 @@
     <TextField fx:id="comment" maxWidth="200" ></TextField>
     <Label text="Difficulty"/>
     <TextField fx:id="difficulty" maxWidth="200" ></TextField>
-    <Label text="Total time"/>
+    <Label text="Total time (in minutes)"/>
     <TextField fx:id="totalTime" maxWidth="200" ></TextField>
-    <Label text="Rating"/>
+    <Label fx:id="errorTimeLabel" styleClass="ErrorText" text="Please enter a number (in minutes)!" visible="false"></Label>
+    <Label text="Rating (from 0 to 10)"/>
     <TextField fx:id="rating" maxWidth="200" ></TextField>
-    <Label text="Distance"/>
+    <Label fx:id="errorRatingLabel" styleClass="ErrorText" text="Please enter a number!" visible="false"></Label>
+    <Label text="Distance (in km)"/>
     <TextField fx:id="distance" maxWidth="200" ></TextField>
     <Label fx:id="errorDistanceLabel" styleClass="ErrorText" text="Please enter a number!" visible="false"></Label>
 
