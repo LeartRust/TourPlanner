@@ -25,9 +25,14 @@ import javafx.util.Callback;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 public class ListController implements Initializable {
+
+    private Consumer<String> onDeleteTour;
+
 
     @FXML
     private TextField searchfield;
@@ -112,8 +117,13 @@ public class ListController implements Initializable {
     public void handleMouseClick(MouseEvent mouseEvent) throws IOException {
 
        System.out.println("clicked on " + tourListView.getSelectionModel().getSelectedItem());
+       this.onDeleteTour.accept("Hallo");
         //DetailsController dc = new DetailsController();
         //detailsController.initData(tourListView.getSelectionModel().getSelectedItem());
+   }
+
+   public void subscribe(Consumer<String> consumer){
+        this.onDeleteTour=consumer;
    }
 
     public String getSelectedTour(){

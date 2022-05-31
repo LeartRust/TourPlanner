@@ -81,5 +81,5 @@
 <!--_________________________________________________________________________________________________________________-->
         </items>
     </SplitPane>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <!--<Button text="Hello!" onAction="#onHelloButtonClick"/>-->
 </VBox>
