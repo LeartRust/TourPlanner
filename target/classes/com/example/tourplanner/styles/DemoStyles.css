@@ -12,6 +12,5 @@ background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);
 */
 
 .ErrorText{
-    -fx-color: red;
-
+    -fx-text-fill: red;
 }

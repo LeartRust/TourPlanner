@@ -38,7 +38,7 @@ public class ListController implements Initializable {
     @FXML
     private TextField searchfield;
     @FXML
-    private ListView<String> tourListView = new ListView<String>();
+    private ListView<TourModel> tourListView = new ListView<TourModel>();
 
     //MongoDB db = new MongoDB();
     static BusinessLogicLayer bl = new BusinessLogicLayer();
@@ -61,10 +61,10 @@ public class ListController implements Initializable {
         tourListView.getItems().clear();
 
         ArrayList<TourModel> toursList = bl.getTours();
-        toursList.stream().forEach(tour -> tourListView.getItems().add(tour.getTourName()));
-        tourListView.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+        toursList.stream().forEach(tour -> tourListView.getItems().add(tour));
+        tourListView.setCellFactory(new Callback<ListView<TourModel>, ListCell<TourModel>>() {
             @Override
-            public ListCell<String> call(ListView<String> stringListView) {
+            public ListCell<TourModel> call(ListView<TourModel> stringListView) {
                 return new ButtonCell();
             }
         });
@@ -79,16 +79,16 @@ public class ListController implements Initializable {
         {
             if(searchName.isEmpty()==false){
                 if(tour.getTourName().toLowerCase(Locale.ROOT).contains(searchName.toLowerCase(Locale.ROOT))){
-                    tourListView.getItems().add(tour.getTourName());
+                    tourListView.getItems().add(tour);
                 }
             }else{
-                tourListView.getItems().add(tour.getTourName());
+                tourListView.getItems().add(tour);
             }
 
         });
-        tourListView.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+        tourListView.setCellFactory(new Callback<ListView<TourModel>, ListCell<TourModel>>() {
             @Override
-            public ListCell<String> call(ListView<String> stringListView) {
+            public ListCell<TourModel> call(ListView<TourModel> stringListView) {
                 return new ButtonCell();
             }
         });
@@ -113,12 +113,13 @@ public class ListController implements Initializable {
 
     public void onRefreshButtonClick(ActionEvent actionEvent) {
         addToList();
+        filterList(searchfield.getText());
     }
 
     public void handleMouseClick(MouseEvent mouseEvent) throws IOException {
 
-       System.out.println("clicked on " + tourListView.getSelectionModel().getSelectedItem());
-       this.onSelectTour.accept(tourListView.getSelectionModel().getSelectedItem());
+       System.out.println("clicked on " + tourListView.getSelectionModel().getSelectedItem().getTourName());
+       this.onSelectTour.accept(tourListView.getSelectionModel().getSelectedItem().getTourName());
         //DetailsController dc = new DetailsController();
         //detailsController.initData(tourListView.getSelectionModel().getSelectedItem());
    }
@@ -128,7 +129,7 @@ public class ListController implements Initializable {
    }
 
     public String getSelectedTour(){
-        return tourListView.getSelectionModel().getSelectedItem();
+        return tourListView.getSelectionModel().getSelectedItem().getTourName();
     }
 
     public void onSearchButtonClick(ActionEvent actionEvent) {
@@ -137,10 +138,10 @@ public class ListController implements Initializable {
 
 
     //Callback to add text and button to the list with an delete method
-    static class ButtonCell extends ListCell<String>{
+    static class ButtonCell extends ListCell<TourModel>{
 
         @Override
-        public void updateItem(final String item, boolean empty) {
+        public void updateItem(final TourModel item, boolean empty) {
             super.updateItem(item, empty);
             if (item != null) {
 
@@ -149,7 +150,7 @@ public class ListController implements Initializable {
                 root.setPadding(new Insets(5, 10, 5, 10));
 
 
-                root.getChildren().add(new Label(item));
+                root.getChildren().add(new Label(item.getTourName()));
 
                 Region region = new Region();
                 HBox.setHgrow(region, Priority.ALWAYS);
@@ -159,8 +160,8 @@ public class ListController implements Initializable {
                 button.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent arg0) {
-                        bl.deleteTour(item);
-                        bl.deleteTourLogs(item);
+                        bl.deleteTour(item.getTourName());
+                        bl.deleteTourLogs(item.getTourName());
                     }
                 });
                 root.getChildren().add( button);
