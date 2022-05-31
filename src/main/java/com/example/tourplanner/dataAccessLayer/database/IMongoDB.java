@@ -28,4 +28,6 @@ public interface IMongoDB {
     ArrayList<TourLogModel> getTourLogs();
 
     void deleteTourLogs(String item);
+
+    ArrayList<TourLogModel> getTourLogsByTourName(String tourName);
 }

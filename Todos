@@ -26,9 +26,6 @@ TODO LIST
 When no list item is clicked add tour log shouldn't work
 make tourName unique (validation)
 
-Tourlog date/time ist zeitstempel der erstellung
-TOurLog integer überprüfen (ParseInt(TextField.getText())
-
 Summarize Report
 Logging
 

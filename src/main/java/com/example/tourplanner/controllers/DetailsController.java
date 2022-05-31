@@ -4,6 +4,7 @@ import com.example.tourplanner.businessLogic.BusinessLogicLayer;
 import com.example.tourplanner.main;
 import com.example.tourplanner.models.TourLogModel;
 import com.example.tourplanner.models.TourModel;
+import com.example.tourplanner.reports.AllToursReport;
 import com.example.tourplanner.reports.DetailsReport;
 import com.example.tourplanner.viewmodel.CreateTourViewModel;
 import com.example.tourplanner.viewmodel.DetailsViewModel;
@@ -46,11 +47,14 @@ public class DetailsController implements Initializable {
     private Label  tourTransportType;
     @FXML
     private Label tourDistance;
+    @FXML
+    private Button createTourLogButton;
 
     @FXML
     private ListView<TourLogModel> tourLogListView = new ListView<TourLogModel>();
 
     static BusinessLogicLayer bl = new BusinessLogicLayer();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,13 +71,21 @@ public class DetailsController implements Initializable {
         viewModel.setTourDetails(selectedItem);
         //tourName.setText("test2");
         //System.out.println("TEST");
+        createTourLogButton.setDisable(false);
         addToList();
     }
 
     public void onReportButtonClick(ActionEvent actionEvent) {
         DetailsReport report = new DetailsReport();
+
+        //get all logs from tour by tourName
+        ArrayList<TourLogModel> tourLogs = bl.getTourLogsByTourName(tourName.getText());
+        tourLogs.forEach(log -> System.out.println(log.getComment()));
         try {
-            report.createPdf(tourName.getText(), tourDescription.getText(), tourFrom.getText(), tourTo.getText(), tourTransportType.getText(), tourDistance.getText());
+            //TODO only for testing
+            AllToursReport allReport = new AllToursReport();
+            allReport.createPdf();
+            report.createPdf(tourName.getText(), tourDescription.getText(), tourFrom.getText(), tourTo.getText(), tourTransportType.getText(), tourDistance.getText(), tourLogs);
             //report.createPdf("Trip to Madrid", "this is the tour description", "Vienna", "Madrid", "Plane", "1000km");
         } catch (IOException e) {
             e.printStackTrace();

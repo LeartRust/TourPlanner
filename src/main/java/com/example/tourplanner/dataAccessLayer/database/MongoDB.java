@@ -138,8 +138,8 @@ public class MongoDB implements IMongoDB {
                 .append("dateTime", dateTime)
                 .append("comment", comment)
                 .append("difficulty", difficulty)
-                .append("totalTime", totalTime)
-                .append("rating", rating)
+                .append("totalTime", Integer.parseInt(totalTime))
+                .append("rating", Integer.parseInt(rating))
                 .append("distance", Integer.parseInt(distance) )
                 .append("ages", new Document("min", 5));
         tourLogs.insertOne(log).getInsertedId().asObjectId().getValue();
@@ -160,6 +160,22 @@ public class MongoDB implements IMongoDB {
     public ArrayList<TourLogModel> getTourLogs() {
         ArrayList<TourLogModel> tourLogsList = new ArrayList<>();
         tourLogs.find().forEach(document ->  tourLogsList.add(new TourLogModel(
+                document.get("_id").toString(),
+                document.get("tourName").toString(),
+                document.get("dateTime").toString(),
+                document.get("comment").toString(),
+                document.get("difficulty").toString(),
+                document.get("totalTime").toString(),
+                document.get("rating").toString(),
+                document.get("distance").toString())));
+
+        return tourLogsList;
+    }
+
+    @Override
+    public ArrayList<TourLogModel> getTourLogsByTourName(String tourName) {
+        ArrayList<TourLogModel> tourLogsList = new ArrayList<>();
+        tourLogs.find(eq("tourName", tourName)).forEach(document ->  tourLogsList.add(new TourLogModel(
                 document.get("_id").toString(),
                 document.get("tourName").toString(),
                 document.get("dateTime").toString(),
@@ -196,6 +212,7 @@ public class MongoDB implements IMongoDB {
                 document.get("tourDistance").toString())));
 
         return toursList;
+
     }
 
     @Override

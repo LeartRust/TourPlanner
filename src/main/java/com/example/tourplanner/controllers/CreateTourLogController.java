@@ -85,6 +85,8 @@ public class CreateTourLogController implements Initializable {
 
         try {
             Integer.parseInt(distance.getText());
+            Integer.parseInt(totalTime.getText());
+            Integer.parseInt(rating.getText());
             Stage stage = (Stage) createTourLogButton.getScene().getWindow();
 
             //TODO get tourName through title???
