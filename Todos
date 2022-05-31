@@ -1,0 +1,39 @@
+Todos:
+
+our update
+Selbes fenster wie bei add, mit daten aus der datenbank ausgefüllt
+daten ändern und dann wird die alte tour gelöscht und neue erstellt
+
+
+logging
+
+report pdf(Über Button von der Detailsview)
+detail in swe angabe
+
+Map/Route information
+
+
+
+Unique Feature
+Touren favorite makieren (search filter zeigt favorioten immer an) passt
+Stern button
+favoriten nicht löschbar
+favoriten werden immer angezeigt wenn beim searchbar der stern auch angeklickt ist
+
+
+
+TODO LIST
+When no list item is clicked add tour log shouldn't work
+make tourName unique (validation)
+
+Tourlog date/time ist zeitstempel der erstellung
+TOurLog integer überprüfen (ParseInt(TextField.getText())
+
+Summarize Report
+Logging
+
+Unit Test
+MapQuest API
+verbesserungen
+
+
