@@ -173,6 +173,17 @@ public class MongoDB implements IMongoDB {
     }
 
     @Override
+    public void deleteTourLogs(String item) {
+        Bson query = eq("tourName", item);
+        try {
+            DeleteResult result = tourLogs.deleteMany(query);
+            System.out.println("Deleted document count: " + result.getDeletedCount());
+        } catch (MongoException me) {
+            System.err.println("Unable to delete due to an error: " + me);
+        }
+    }
+
+    @Override
     public ArrayList<TourModel> getTours(){
         ArrayList<TourModel> toursList = new ArrayList<>();
         tours.find().forEach(document ->  toursList.add(new TourModel(

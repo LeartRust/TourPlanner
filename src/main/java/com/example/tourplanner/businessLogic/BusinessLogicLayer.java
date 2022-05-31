@@ -56,4 +56,8 @@ public class BusinessLogicLayer {
     public ArrayList<TourLogModel> getTourLogs() {
         return this.database.getTourLogs();
     }
+
+    public void deleteTourLogs(String item) {
+        this.database.deleteTourLogs(item);
+    }
 }

@@ -32,7 +32,7 @@ import java.util.function.Consumer;
 
 public class ListController implements Initializable {
 
-    private Consumer<String> onDeleteTour;
+    private Consumer<String> onSelectTour;
 
 
     @FXML
@@ -118,13 +118,13 @@ public class ListController implements Initializable {
     public void handleMouseClick(MouseEvent mouseEvent) throws IOException {
 
        System.out.println("clicked on " + tourListView.getSelectionModel().getSelectedItem());
-       this.onDeleteTour.accept("Hallo");
+       this.onSelectTour.accept(tourListView.getSelectionModel().getSelectedItem());
         //DetailsController dc = new DetailsController();
         //detailsController.initData(tourListView.getSelectionModel().getSelectedItem());
    }
 
    public void subscribe(Consumer<String> consumer){
-        this.onDeleteTour=consumer;
+        this.onSelectTour=consumer;
    }
 
     public String getSelectedTour(){
@@ -160,6 +160,7 @@ public class ListController implements Initializable {
                     @Override
                     public void handle(ActionEvent arg0) {
                         bl.deleteTour(item);
+                        bl.deleteTourLogs(item);
                     }
                 });
                 root.getChildren().add( button);
