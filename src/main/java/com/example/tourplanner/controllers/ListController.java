@@ -128,8 +128,8 @@ public class ListController implements Initializable {
         this.onSelectTour=consumer;
    }
 
-    public String getSelectedTour(){
-        return tourListView.getSelectionModel().getSelectedItem().getTourName();
+    public TourModel getSelectedTour(){
+        return tourListView.getSelectionModel().getSelectedItem();
     }
 
     public void onSearchButtonClick(ActionEvent actionEvent) {

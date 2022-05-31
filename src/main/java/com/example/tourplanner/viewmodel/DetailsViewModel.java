@@ -34,8 +34,8 @@ public class DetailsViewModel {
         return tourDistance;
     }
 
-    public void setTourDetails(String newTourName){
-        TourModel detailsTour = bl.getTour(newTourName);
+    public void setTourDetails(TourModel detailsTour){
+        //TourModel detailsTour = bl.getTour(newTourName);
 
         tourName.set(detailsTour.getTourName());
         tourDescription.set(detailsTour.getTourDescription());

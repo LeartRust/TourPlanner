@@ -21,15 +21,6 @@ private DetailsController detailsController;
 @FXML
 private ListController listController;
 
- public void test(String test1){
-     detailsController.initData("Test1q");
-    }
-
-    public void onHelloButtonClick(ActionEvent actionEvent) {
-        //listController.getSelectedTour();
-        detailsController.initData(listController.getSelectedTour());
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.listController.subscribe(s->detailsController.initData(listController.getSelectedTour()));

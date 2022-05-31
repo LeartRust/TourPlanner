@@ -63,7 +63,7 @@ public class DetailsController implements Initializable {
         tourDistance.textProperty().bindBidirectional(viewModel.getTourDistance());
     }
 
-    public void initData(String selectedItem) {
+    public void initData(TourModel selectedItem) {
         viewModel.setTourDetails(selectedItem);
         //tourName.setText("test2");
         //System.out.println("TEST");
