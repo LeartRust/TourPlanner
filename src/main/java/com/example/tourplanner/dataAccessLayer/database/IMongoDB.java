@@ -21,7 +21,7 @@ public interface IMongoDB {
 
     
     //
-    void addTourLog(String tourName, String dateTime, String comment, String difficulty, String totalTime, String rating);
+    void addTourLog(String tourName, String dateTime, String comment, String difficulty, String totalTime, String rating, String distance);
 
     void deleteTourLog(String item);
 

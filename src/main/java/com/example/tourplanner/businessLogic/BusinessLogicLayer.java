@@ -46,7 +46,7 @@ public class BusinessLogicLayer {
     // TourLog methods
 
     public void addTourLog(loginfo log){
-        this.database.addTourLog(log.tourName(), log.dateTime(), log.comment(), log.difficulty(), log.totalTime(), log.rating());
+        this.database.addTourLog(log.tourName(), log.dateTime(), log.comment(), log.difficulty(), log.totalTime(), log.rating(), log.distance());
     }
     public void deleteTourLog(String item) {
         this.database.deleteTourLog(item);

@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.EventListener;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
@@ -77,7 +78,7 @@ public class ListController implements Initializable {
         toursList.stream().forEach(tour ->
         {
             if(searchName.isEmpty()==false){
-                if(tour.getTourName().contains(searchName)){
+                if(tour.getTourName().toLowerCase(Locale.ROOT).contains(searchName.toLowerCase(Locale.ROOT))){
                     tourListView.getItems().add(tour.getTourName());
                 }
             }else{

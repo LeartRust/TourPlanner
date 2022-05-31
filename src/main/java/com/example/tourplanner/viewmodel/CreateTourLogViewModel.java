@@ -14,6 +14,7 @@ public class CreateTourLogViewModel {
     private final StringProperty difficulty = new SimpleStringProperty("");
     private final StringProperty totalTime = new SimpleStringProperty("");
     private final StringProperty rating = new SimpleStringProperty("");
+    private final StringProperty distance = new SimpleStringProperty("");
 
     public StringProperty getDateTime() {
         return dateTime;
@@ -30,16 +31,20 @@ public class CreateTourLogViewModel {
     public StringProperty getRating() {
         return rating;
     }
+    public StringProperty getDistance() {
+        return distance;
+    }
 
 
     public void saveTourLog(String tourName){
 
         BusinessLogicLayer bl = new BusinessLogicLayer();
-        bl.addTourLog(new loginfo(tourName, dateTime.get(), comment.get(), difficulty.get(), totalTime.get(), rating.get()));
+        bl.addTourLog(new loginfo(tourName, dateTime.get(), comment.get(), difficulty.get(), totalTime.get(), rating.get(), distance.get()));
         dateTime.set("");
         comment.set("");
         difficulty.set("");
         totalTime.set("");
         rating.set("");
+        distance.set("");
     }
 }

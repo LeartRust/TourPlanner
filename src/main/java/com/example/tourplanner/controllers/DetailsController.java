@@ -66,7 +66,8 @@ public class DetailsController implements Initializable {
     public void initData(String selectedItem) {
         viewModel.setTourDetails(selectedItem);
         //tourName.setText("test2");
-        System.out.println("TEST");
+        //System.out.println("TEST");
+        addToList();
     }
 
     public void onReportButtonClick(ActionEvent actionEvent) {
@@ -131,11 +132,10 @@ public class DetailsController implements Initializable {
         Scene scene = new Scene(fxmlLoader.load(), 1600, 900);
         stage.setResizable(false);
 
-        //TODO set Max width to Screen
-        //stage.setMaxWidth(Screen);
         stage.setTitle(tourName.getText());
         stage.setScene(scene);
         stage.show();
+        //TODO refresh after add button
     }
 
 
@@ -177,6 +177,11 @@ public class DetailsController implements Initializable {
                 ratingLabel.setStyle("-fx-font-weight: bold;");
                 root.getChildren().add(ratingLabel);
                 root.getChildren().add(new Label(item.getRating()));
+
+                Label distanceLabel = new Label("Distance:");
+                distanceLabel.setStyle("-fx-font-weight: bold;");
+                root.getChildren().add(distanceLabel);
+                root.getChildren().add(new Label(item.getDistance()));
 
                 Region region = new Region();
                 HBox.setHgrow(region, Priority.ALWAYS);

@@ -27,6 +27,8 @@ public class CreateTourLogController implements Initializable {
     private TextField  totalTime;
     @FXML
     private TextField rating;
+    @FXML
+    private TextField distance;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -35,6 +37,7 @@ public class CreateTourLogController implements Initializable {
         difficulty.textProperty().bindBidirectional(viewModel.getDifficulty());
         totalTime.textProperty().bindBidirectional(viewModel.getTotalTime());
         rating.textProperty().bindBidirectional(viewModel.getRating());
+        distance.textProperty().bindBidirectional(viewModel.getDistance());
     }
 
 

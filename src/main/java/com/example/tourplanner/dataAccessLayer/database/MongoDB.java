@@ -132,7 +132,7 @@ public class MongoDB implements IMongoDB {
     }
 
     @Override
-    public void addTourLog(String tourName, String dateTime, String comment, String difficulty, String totalTime, String rating) {
+    public void addTourLog(String tourName, String dateTime, String comment, String difficulty, String totalTime, String rating, String distance) {
         Document log = new Document()
                 .append("tourName", tourName)
                 .append("dateTime", dateTime)
@@ -140,6 +140,7 @@ public class MongoDB implements IMongoDB {
                 .append("difficulty", difficulty)
                 .append("totalTime", totalTime)
                 .append("rating", rating)
+                .append("distance", distance)
                 .append("ages", new Document("min", 5));
         tourLogs.insertOne(log).getInsertedId().asObjectId().getValue();
     }
@@ -165,7 +166,8 @@ public class MongoDB implements IMongoDB {
                 document.get("comment").toString(),
                 document.get("difficulty").toString(),
                 document.get("totalTime").toString(),
-                document.get("rating").toString())));
+                document.get("rating").toString(),
+                document.get("distance").toString())));
 
         return tourLogsList;
     }

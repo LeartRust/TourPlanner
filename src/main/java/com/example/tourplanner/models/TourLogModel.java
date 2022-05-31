@@ -8,8 +8,9 @@ public class TourLogModel {
     private String difficulty;
     private String totalTime;
     private String rating;
+    private String distance;
 
-    public TourLogModel(String logId, String tourName, String dateTime, String comment, String difficulty, String totalTime, String rating){
+    public TourLogModel(String logId, String tourName, String dateTime, String comment, String difficulty, String totalTime, String rating, String distance){
         this.logId = logId;
         this.tourName = tourName;
         this.dateTime = dateTime;
@@ -17,6 +18,15 @@ public class TourLogModel {
         this.difficulty = difficulty;
         this.totalTime = totalTime;
         this.rating = rating;
+        this.distance = distance;
+    }
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
     }
 
     public String getLogId() {

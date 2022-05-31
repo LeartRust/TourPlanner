@@ -30,6 +30,8 @@
     <TextField fx:id="totalTime" maxWidth="200" ></TextField>
     <Label text="Rating"/>
     <TextField fx:id="rating" maxWidth="200" ></TextField>
+    <Label text="Distance"/>
+    <TextField fx:id="distance" maxWidth="200" ></TextField>
 
     <Button fx:id="createTourLogButton" text="create tour log!" styleClass="mainButton" onAction="#onCreateTourLogButtonClick"/>
     <!--
