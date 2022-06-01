@@ -69,10 +69,12 @@ public class MongoDB implements IMongoDB {
 
     public void exportTours() throws IOException {
         Runtime.getRuntime().exec("mongoexport --host localhost --port 27017 --db TourPlanner --collection Tours --out src/main/resources/com/example/tourplanner/exports/Tours.json");
+        //Runtime.getRuntime().exec("C:/Program Files/MongoDB/Tools/100/bin/mongoexport.exe --host localhost --port 27017 --db TourPlanner --collection Tours --out src/main/resources/com/example/tourplanner/exports/Tours.json");
     }
 
     public void exportTourLogs() throws IOException {
         Runtime.getRuntime().exec("mongoexport --host localhost --port 27017 --db TourPlanner --collection TourLogs --out ../TourPlanner/src/main/resources/com/example/tourplanner/exports/TourLogs.json");
+        //Runtime.getRuntime().exec("C:/Program Files/MongoDB/Tools/100/bin/mongoexport.exe --host localhost --port 27017 --db TourPlanner --collection TourLogs --out ../TourPlanner/src/main/resources/com/example/tourplanner/exports/TourLogs.json");
     }
 
     public void importTours(String path){
