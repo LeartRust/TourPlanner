@@ -34,7 +34,11 @@ public class AllToursReport {
 
         for (TourModel tour : toursList) {
             ArrayList<TourLogModel> tourLogs = bl.getTourLogsByTourName(tour.getTourName());
-            document.add(new Paragraph(tour.getTourName()));
+            Paragraph tourHeader = new Paragraph(tour.getTourName());
+            tourHeader.setBold();
+            tourHeader.setFontSize(20);
+            document.add(tourHeader);
+
             double avgTime = 0, avgDistance = 0, avgRating = 0;
             for (TourLogModel log : tourLogs) {
                 avgTime = avgTime + Integer.parseInt(log.getTotalTime());

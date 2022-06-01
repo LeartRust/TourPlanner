@@ -51,31 +51,7 @@ public class MongoDB implements IMongoDB {
     public void createDb(){
         //TODO manage mongodb imports, somehow not working sometimes
         //TODO make tourName unique https://www.educba.com/mongodb-unique/
-
-        //DB database = mongoClient.getDB("TheDatabaseName");
-
-        /*Document tour = new Document("name", "test1").append("ages", new Document("min", 5));
-        ObjectId id = tours.insertOne(tour).getInsertedId().asObjectId().getValue();
-
-
-        Document test1 = tours.find(new Document("name", "test1")).first();
-        System.out.println(test1.toJson());*/
     }
-
-/*
-    public void addTour(tourInfo tourInfo){
-        Document tour = new Document()
-                .append("tourName", tourInfo.tourName())
-                .append("tourDescription", tourInfo.tourDescription())
-                .append("tourFrom", tourInfo.tourFrom())
-                .append("tourTo", tourInfo.tourTo())
-                .append("tourTransportType", tourInfo.tourTransportType())
-                .append("tourDistance", tourInfo.tourDistance())
-                .append("ages", new Document("min", 5));
-        ObjectId id = tours.insertOne(tour).getInsertedId().asObjectId().getValue();
-    }
-*/
-
 
     @Override
     public void addTour(String tourName, String tourDescription, String tourFrom, String tourTo, String tourTransportType, String tourDistance) {
