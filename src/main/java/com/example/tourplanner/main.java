@@ -1,6 +1,8 @@
 package com.example.tourplanner;
 
 import com.example.tourplanner.dataAccessLayer.database.MongoDB;
+import com.example.tourplanner.logger.ILoggerWrapper;
+import com.example.tourplanner.logger.LoggerFactory;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,6 +14,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class main extends Application {
+
+    private static final ILoggerWrapper logger = LoggerFactory.getLogger();
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("views/mainView.fxml"));
@@ -26,14 +30,11 @@ public class main extends Application {
 
 
     public static void main(String[] args) {
-//        DetailsReport report = new DetailsReport();
-//        try {
-//            report.createPdf();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        Logger logger = LogManager.getLogger(main.class.getName());
-        logger.error("erroor");
+
+        logger.debug("This is a debug message.");
+        logger.fatal("This is a fatal message.");
+        logger.warn("This is a warning message.");
+        logger.error("This is an error message.");
 
         launch();
     }
