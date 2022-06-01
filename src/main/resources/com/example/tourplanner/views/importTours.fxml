@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.net.URL?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.tourplanner.controllers.ImportToursController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <stylesheets>
+        <URL value="@../styles/DetailsViewStyles.css"/>
+    </stylesheets>
+    <VBox alignment="CENTER" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <HBox alignment="CENTER">
+            <Label  onDragOver="#onFileDragOver" onDragDropped="#onFileDropped" styleClass="InfoLabel" maxWidth="100" wrapText="true" fx:id="importLabel" text="Please drag and drop your import file here" ></Label>
+        </HBox>
+    </VBox>
+
+</AnchorPane>

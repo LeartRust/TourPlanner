@@ -39,8 +39,16 @@ public class BusinessLogicLayer {
         this.database.exportTours();
     };
 
-    public void importTours(){
-        this.database.importTours();
+    public void exportTourLogs() throws IOException {
+        this.database.exportTourLogs();
+    };
+
+    public void importTours(String path){
+        this.database.importTours(path);
+    }
+
+    public void importTourLogs(String path){
+        this.database.importTourLogs(path);
     }
 
     // TourLog methods

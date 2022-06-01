@@ -48,6 +48,7 @@ public class AllToursReport {
             document.add(new Paragraph("average Time: " + (avgTime/tourLogs.size())));
             document.add(new Paragraph("average Distance: " + (avgDistance/tourLogs.size())));
             document.add(new Paragraph("average Rating: " + (avgRating/tourLogs.size())));
+            document.add(new Paragraph("____________"));
         }
 
 

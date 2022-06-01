@@ -68,10 +68,14 @@ public class MongoDB implements IMongoDB {
     }
 
     public void exportTours() throws IOException {
-        Runtime.getRuntime().exec("mongoexport --host localhost --port 27017 --db TourPlanner --collection Tours --out ../TourPlanner/src/main/resources/com/example/tourplanner/exports/Tours.json");
+        Runtime.getRuntime().exec("mongoexport --host localhost --port 27017 --db TourPlanner --collection Tours --out src/main/resources/com/example/tourplanner/exports/Tours.json");
     }
 
-    public void importTours(){
+    public void exportTourLogs() throws IOException {
+        Runtime.getRuntime().exec("mongoexport --host localhost --port 27017 --db TourPlanner --collection TourLogs --out ../TourPlanner/src/main/resources/com/example/tourplanner/exports/TourLogs.json");
+    }
+
+    public void importTours(String path){
         try {
             //drop previous import
             tours.drop();
@@ -81,7 +85,7 @@ public class MongoDB implements IMongoDB {
             int batch = 100;
             List<InsertOneModel<Document>> docs = new ArrayList<>();
 
-            try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/com/example/tourplanner/dataAccessLayer/database/Tours.json"))) {
+            try (BufferedReader br = new BufferedReader(new FileReader(path))) {
                 String line;
                 while ((line = br.readLine()) != null) {
                     docs.add(new InsertOneModel<>(Document.parse(line)));
@@ -99,6 +103,42 @@ public class MongoDB implements IMongoDB {
 
             if (count > 0) {
                 tours.bulkWrite(docs, new BulkWriteOptions().ordered(false));
+            }
+
+        } catch (MongoWriteException e) {
+            System.out.println("Error");
+        }
+
+    }
+
+    public void importTourLogs(String path){
+        try {
+            //drop previous import
+            tourLogs.drop();
+
+            //Bulk Approach:
+            int count = 0;
+            int batch = 100;
+            List<InsertOneModel<Document>> docs = new ArrayList<>();
+
+            try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    docs.add(new InsertOneModel<>(Document.parse(line)));
+                    System.out.println(docs.toString());
+                    count++;
+                    if (count == batch) {
+                        tourLogs.bulkWrite(docs, new BulkWriteOptions().ordered(false));
+                        docs.clear();
+                        count = 0;
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            if (count > 0) {
+                tourLogs.bulkWrite(docs, new BulkWriteOptions().ordered(false));
             }
 
         } catch (MongoWriteException e) {

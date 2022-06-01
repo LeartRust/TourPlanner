@@ -32,9 +32,11 @@
                                     <menus>
                                         <Menu text="File">
                                             <items>
-                                                <MenuItem text="Open"></MenuItem>
-                                                <MenuItem text="Save"></MenuItem>
-                                                <MenuItem text="Save as"></MenuItem>
+                                                <MenuItem text="Create Summarize Report" onAction="#onCreateSummarizeClick"></MenuItem>
+                                                <MenuItem text="Import Tours" onAction="#onImportToursClick"></MenuItem>
+                                                <MenuItem text="Export Tours" onAction="#onExportToursClick"></MenuItem>
+                                                <MenuItem text="Import Tour Logs" onAction="#onImportTourLogsClick"></MenuItem>
+                                                <MenuItem text="Export Tour Logs" onAction="#onExportTourLogsClick"></MenuItem>
                                             </items>
                                         </Menu>
                                         <Menu text="Settings">

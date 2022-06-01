@@ -57,6 +57,7 @@ public class DetailsReport {
         document.add(new Paragraph(tourTransportType));
         document.add(headerDistance);
         document.add(new Paragraph( tourDistance));
+        document.add(new Paragraph("____________"));
 
         document.add(new Paragraph(""));
 

@@ -17,7 +17,11 @@ public interface IMongoDB {
 
     void exportTours() throws IOException;
 
-    void importTours();
+    void exportTourLogs() throws IOException;
+
+    void importTours(String path);
+
+    void importTourLogs(String path);
 
     
     //

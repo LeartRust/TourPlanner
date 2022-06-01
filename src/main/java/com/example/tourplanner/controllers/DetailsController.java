@@ -83,8 +83,8 @@ public class DetailsController implements Initializable {
         tourLogs.forEach(log -> System.out.println(log.getComment()));
         try {
             //TODO only for testing
-            AllToursReport allReport = new AllToursReport();
-            allReport.createPdf();
+            //AllToursReport allReport = new AllToursReport();
+            //allReport.createPdf();
             report.createPdf(tourName.getText(), tourDescription.getText(), tourFrom.getText(), tourTo.getText(), tourTransportType.getText(), tourDistance.getText(), tourLogs);
             //report.createPdf("Trip to Madrid", "this is the tour description", "Vienna", "Madrid", "Plane", "1000km");
         } catch (IOException e) {
@@ -93,6 +93,7 @@ public class DetailsController implements Initializable {
 
     }
 
+    /*
     public void onFileDropped(DragEvent event) {
         Dragboard db = event.getDragboard();
         boolean success = false;
@@ -100,8 +101,6 @@ public class DetailsController implements Initializable {
             System.out.println(db.getFiles().toString());
             success = true;
         }
-        /* let the source know whether the string was successfully
-         * transferred and used */
         event.setDropCompleted(success);
 
         event.consume();
@@ -109,13 +108,13 @@ public class DetailsController implements Initializable {
 
     public void onFileDragOver(DragEvent event) {
         if (event.getDragboard().hasFiles()) {
-            /* allow for both copying and moving, whatever user chooses */
+            //allow for both copying and moving, whatever user chooses
             event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
         }
-        bl.importTours();
+        //bl.importTours();
         event.consume();
     }
-
+*/
     public void addToList(){
         tourLogListView.getItems().clear();
 
