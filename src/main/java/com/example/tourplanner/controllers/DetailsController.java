@@ -83,7 +83,9 @@ public class DetailsController implements Initializable {
         createTourLogButton.setDisable(false);
         // Create new image with new url:
 
-        imageView.setImage(new Image("https://www.mapquestapi.com/staticmap/v5/map?key=IwA2M7w326xoylLFZ6PHlaIGdfGS5Ktg&size=@2x&start="+ selectedItem.getTourFrom() +"&end="+ selectedItem.getTourTo()));
+        new Thread(() -> {
+            imageView.setImage(new Image("https://www.mapquestapi.com/staticmap/v5/map?key=IwA2M7w326xoylLFZ6PHlaIGdfGS5Ktg&size=@2x&start="+ selectedItem.getTourFrom() +"&end="+ selectedItem.getTourTo()));
+        }).start();
 
         addToList();
     }

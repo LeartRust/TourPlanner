@@ -29,6 +29,9 @@ public class CreateTourController implements Initializable {
     private TextField  tourTransportType;
     @FXML
     private TextField tourDistance;
+    @FXML
+    private Label errorEmptyFields;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -43,9 +46,16 @@ public class CreateTourController implements Initializable {
 
     @FXML
     protected void onCreateTourButtonClick() {
-        viewModel.saveTour();
-        Stage stage = (Stage) createTourButton.getScene().getWindow();
-        stage.close();
+
+        if(tourName.getText().isBlank() || tourDescription.getText().isBlank() || tourFrom.getText().isBlank() || tourTo.getText().isBlank() || tourTransportType.getText().isBlank() || tourDistance.getText().isBlank()){
+            errorEmptyFields.setVisible(true);
+        }else{
+            viewModel.saveTour();
+            Stage stage = (Stage) createTourButton.getScene().getWindow();
+            stage.close();
+        }
+
+
     }
 
 }
