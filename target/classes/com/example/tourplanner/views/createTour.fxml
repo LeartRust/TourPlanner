@@ -17,6 +17,7 @@
     </stylesheets>
 
     <Label text="create a new tour:"/>
+    <Label fx:id="errorEmptyFields" styleClass="ErrorText" text="Please fill every field with a valid entry!" visible="false"></Label>
     <Label text="Name"/>
     <TextField fx:id="tourName" maxWidth="200" ></TextField>
     <Label text="Tour description"/>
