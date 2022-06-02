@@ -21,6 +21,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -70,7 +71,6 @@ public class DetailsController implements Initializable {
         tourTo.textProperty().bindBidirectional(viewModel.getTourTo());
         tourTransportType.textProperty().bindBidirectional(viewModel.getTourTransportType());
         tourDistance.textProperty().bindBidirectional(viewModel.getTourDistance());
-
 
         //imageView.setImage(new Image("https://www.mapquestapi.com/staticmap/v5/map?key=IwA2M7w326xoylLFZ6PHlaIGdfGS5Ktg&center=Boston&size=@2x"));
 

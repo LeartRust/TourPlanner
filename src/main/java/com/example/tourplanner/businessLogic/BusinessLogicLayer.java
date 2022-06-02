@@ -73,4 +73,6 @@ public class BusinessLogicLayer {
     public void deleteTourLogs(String item) {
         this.database.deleteTourLogs(item);
     }
+
+    public void changeFavorite(String id, String isFavorite) {this.database.changeFavorite(id, isFavorite);}
 }

@@ -12,7 +12,9 @@ public class TourModel {
     private String tourTransportType;
     private String tourDistance;
 
-    public TourModel(String tourId, String tourName, String tourDescription, String tourFrom, String tourTo, String tourTransportType, String tourDistance){
+    private  String isFavorite;
+
+    public TourModel(String tourId, String tourName, String tourDescription, String tourFrom, String tourTo, String tourTransportType, String tourDistance, String isFavorite){
         this.tourId = tourId;
         this.tourName = tourName;
         this.tourDescription = tourDescription;
@@ -20,6 +22,7 @@ public class TourModel {
         this.tourTo = tourTo;
         this.tourTransportType = tourTransportType;
         this.tourDistance = tourDistance;
+        this.isFavorite = isFavorite;
     }
 
     public String getTourId() {
@@ -76,5 +79,13 @@ public class TourModel {
 
     public void setTourDistance(String tourDistance) {
         this.tourDistance = tourDistance;
+    }
+
+    public String getIsFavorite() {
+        return isFavorite;
+    }
+
+    public void setIsFavorite(String isFavorite) {
+        this.isFavorite = isFavorite;
     }
 }

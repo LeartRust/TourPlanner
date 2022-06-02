@@ -8,10 +8,7 @@ import com.mongodb.MongoWriteException;
 import com.mongodb.bulk.BulkWriteResult;
 import com.mongodb.client.*;
 
-import com.mongodb.client.model.BulkWriteOptions;
-import com.mongodb.client.model.InsertOneModel;
-import com.mongodb.client.model.Projections;
-import com.mongodb.client.model.Sorts;
+import com.mongodb.client.model.*;
 import com.mongodb.client.result.DeleteResult;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -62,6 +59,7 @@ public class MongoDB implements IMongoDB {
                 .append("tourTo", tourTo)
                 .append("tourTransportType", tourTransportType)
                 .append("tourDistance", tourDistance)
+                .append("isFavorite", false)
                 .append("ages", new Document("min", 5));
         ObjectId id = tours.insertOne(tour).getInsertedId().asObjectId().getValue();
 
@@ -227,7 +225,8 @@ public class MongoDB implements IMongoDB {
                 document.get("tourFrom").toString(),
                 document.get("tourTo").toString(),
                 document.get("tourTransportType").toString(),
-                document.get("tourDistance").toString())));
+                document.get("tourDistance").toString(),
+                document.get("isFavorite").toString())));
 
         return toursList;
 
@@ -257,7 +256,7 @@ public class MongoDB implements IMongoDB {
     @Override
     public TourModel getTour(String tourName){
 
-            TourModel emptyTour = new TourModel("","","","","","","");
+            TourModel emptyTour = new TourModel("","","","","","","", "");
             Bson projectionFields = Projections.fields(
                     Projections.include("_id", "tourName", "tourDescription", "tourFrom", "tourTo", "tourTransportType", "tourDistance"),
                     Projections.excludeId());
@@ -293,7 +292,18 @@ public class MongoDB implements IMongoDB {
     private TourModel getValuesFromObject(Document doc) {
         ArrayList<String> tourValues = new ArrayList<>();
         doc.values().stream().forEach(value -> tourValues.add(value.toString()));
-        return new TourModel("", tourValues.get(0), tourValues.get(1), tourValues.get(2), tourValues.get(3), tourValues.get(4), tourValues.get(5));
+        return new TourModel("", tourValues.get(0), tourValues.get(1), tourValues.get(2), tourValues.get(3), tourValues.get(4), tourValues.get(5), tourValues.get(6));
+    }
+
+    @Override
+    public void changeFavorite(String id, String isFavorite) {
+
+        if(isFavorite.equals("true")){
+            tours.updateOne(Filters.eq("_id", new ObjectId(id)), Updates.set("isFavorite", true));
+        }else if(isFavorite.equals("false")){
+            tours.updateOne(Filters.eq("_id", new ObjectId(id)), Updates.set("isFavorite", false));
+        }
+
     }
 
 

@@ -34,4 +34,6 @@ public interface IMongoDB {
     void deleteTourLogs(String item);
 
     ArrayList<TourLogModel> getTourLogsByTourName(String tourName);
+
+    void changeFavorite(String id, String isFavorite);
 }

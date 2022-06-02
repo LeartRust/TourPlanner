@@ -2,6 +2,8 @@ package com.example.tourplanner.reports;
 
 import com.example.tourplanner.models.TourLogModel;
 import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.pdf.*;
@@ -57,6 +59,10 @@ public class DetailsReport {
         document.add(new Paragraph(tourTransportType));
         document.add(headerDistance);
         document.add(new Paragraph( tourDistance));
+
+        ImageData imageData = ImageDataFactory.create("https://www.mapquestapi.com/staticmap/v5/map?key=IwA2M7w326xoylLFZ6PHlaIGdfGS5Ktg&size=@2x&start="+ tourFrom +"&end="+ tourTo);
+        document.add(new Image(imageData));
+
         document.add(new Paragraph("____________"));
 
         document.add(new Paragraph(""));
@@ -119,10 +125,6 @@ public class DetailsReport {
                 .setBold()
                 .setFontColor(ColorConstants.GREEN);
         document.add(imageHeader);*/
-/*
-        ImageData imageData = ImageDataFactory.create(GOOGLE_MAPS_PNG);
-        document.add(new Image(imageData));
-*/
 
         document.close();
     }

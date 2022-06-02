@@ -14,6 +14,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -156,15 +158,61 @@ public class ListController implements Initializable {
                 HBox.setHgrow(region, Priority.ALWAYS);
                 root.getChildren().add(region);
 
-                Button button = new Button("delete");
-                button.setOnAction(new EventHandler<ActionEvent>() {
+
+                Button buttonFavorite = new Button();
+
+                if(item.getIsFavorite().equals("false")){
+                    ImageView starimg = new ImageView("https://cdn-icons-png.flaticon.com/512/1828/1828970.png");
+                    starimg.setFitHeight(15);
+                    starimg.setFitWidth(15);
+                    buttonFavorite.setGraphic(starimg);
+                }else{
+                    ImageView starimg = new ImageView("https://cdn-icons-png.flaticon.com/512/1828/1828614.png");
+                    starimg.setFitHeight(15);
+                    starimg.setFitWidth(15);
+                    buttonFavorite.setGraphic(starimg);
+                }
+
+
+                buttonFavorite.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent arg0) {
+                        if(item.getIsFavorite().equals("false")){
+                            item.setIsFavorite("true");
+                            bl.changeFavorite(item.getTourId(), item.getIsFavorite());
+
+                            ImageView changeImg = new ImageView("https://cdn-icons-png.flaticon.com/512/1828/1828614.png");
+
+                            changeImg.setFitHeight(15);
+                            changeImg.setFitWidth(15);
+                            System.out.println(item.getIsFavorite());
+                            buttonFavorite.setGraphic(changeImg);
+                        }else{
+                            item.setIsFavorite("false");
+                            bl.changeFavorite(item.getTourId(), item.getIsFavorite());
+
+                            ImageView changeImg = new ImageView("https://cdn-icons-png.flaticon.com/512/1828/1828970.png");
+
+                            changeImg.setFitHeight(15);
+                            changeImg.setFitWidth(15);
+                            System.out.println(item.getIsFavorite());
+                            buttonFavorite.setGraphic(changeImg);
+                        }
+
+                    }
+                });
+                root.getChildren().add( buttonFavorite);
+
+
+                Button buttonDelete = new Button("delete");
+                buttonDelete.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent arg0) {
                         bl.deleteTour(item.getTourName());
                         bl.deleteTourLogs(item.getTourName());
                     }
                 });
-                root.getChildren().add( button);
+                root.getChildren().add( buttonDelete);
                 setGraphic(root);
             }
         }
