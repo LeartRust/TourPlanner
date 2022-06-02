@@ -36,7 +36,8 @@ public class ListController implements Initializable {
 
     private Consumer<String> onSelectTour;
 
-
+    @FXML
+    private  ToggleButton FavoriteFilterButton;
     @FXML
     private TextField searchfield;
     @FXML
@@ -80,7 +81,18 @@ public class ListController implements Initializable {
         toursList.stream().forEach(tour ->
         {
             if(searchName.isEmpty()==false){
-                if(tour.getTourName().toLowerCase(Locale.ROOT).contains(searchName.toLowerCase(Locale.ROOT))){
+                if(FavoriteFilterButton.isSelected()==true){
+                    if(tour.getTourName().toLowerCase(Locale.ROOT).contains(searchName.toLowerCase(Locale.ROOT)) || tour.getIsFavorite().equals("true")){
+                        tourListView.getItems().add(tour);
+                    }
+                }else{
+                    if(tour.getTourName().toLowerCase(Locale.ROOT).contains(searchName.toLowerCase(Locale.ROOT))){
+                        tourListView.getItems().add(tour);
+                    }
+                }
+
+            }else if(FavoriteFilterButton.isSelected()==true){
+                if(tour.getIsFavorite().equals("true")){
                     tourListView.getItems().add(tour);
                 }
             }else{
@@ -136,6 +148,22 @@ public class ListController implements Initializable {
 
     public void onSearchButtonClick(ActionEvent actionEvent) {
         filterList(searchfield.getText());
+    }
+
+    public void onFavoriteFilterButtonClick(ActionEvent actionEvent) {
+                if(FavoriteFilterButton.isSelected() == true){
+
+                    ImageView starimg = new ImageView("https://cdn-icons-png.flaticon.com/512/1828/1828614.png");
+                    starimg.setFitHeight(15);
+                    starimg.setFitWidth(15);
+                    FavoriteFilterButton.setGraphic(starimg);
+                }else if(FavoriteFilterButton.isSelected() == false){
+                    ImageView starimg = new ImageView("https://cdn-icons-png.flaticon.com/512/1828/1828970.png");
+                    starimg.setFitHeight(15);
+                    starimg.setFitWidth(15);
+                    FavoriteFilterButton.setGraphic(starimg);
+                }
+
     }
 
 
