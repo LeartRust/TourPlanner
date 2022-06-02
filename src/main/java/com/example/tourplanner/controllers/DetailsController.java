@@ -17,6 +17,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
@@ -26,7 +28,7 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -53,6 +55,9 @@ public class DetailsController implements Initializable {
     @FXML
     private ListView<TourLogModel> tourLogListView = new ListView<TourLogModel>();
 
+    @FXML
+    private ImageView imageView;
+
     static BusinessLogicLayer bl = new BusinessLogicLayer();
 
 
@@ -65,6 +70,10 @@ public class DetailsController implements Initializable {
         tourTo.textProperty().bindBidirectional(viewModel.getTourTo());
         tourTransportType.textProperty().bindBidirectional(viewModel.getTourTransportType());
         tourDistance.textProperty().bindBidirectional(viewModel.getTourDistance());
+
+
+        //imageView.setImage(new Image("https://www.mapquestapi.com/staticmap/v5/map?key=IwA2M7w326xoylLFZ6PHlaIGdfGS5Ktg&center=Boston&size=@2x"));
+
     }
 
     public void initData(TourModel selectedItem) {
@@ -72,6 +81,10 @@ public class DetailsController implements Initializable {
         //tourName.setText("test2");
         //System.out.println("TEST");
         createTourLogButton.setDisable(false);
+        // Create new image with new url:
+
+        imageView.setImage(new Image("https://www.mapquestapi.com/staticmap/v5/map?key=IwA2M7w326xoylLFZ6PHlaIGdfGS5Ktg&size=@2x&start="+ selectedItem.getTourFrom() +"&end="+ selectedItem.getTourTo()));
+
         addToList();
     }
 

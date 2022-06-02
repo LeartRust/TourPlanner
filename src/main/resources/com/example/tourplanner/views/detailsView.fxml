@@ -9,6 +9,8 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.geometry.Insets?>
 <?import java.net.URL?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.tourplanner.controllers.DetailsController"
@@ -71,11 +73,22 @@
                     <VBox alignment="BOTTOM_CENTER" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                         <HBox alignment="BASELINE_CENTER">
                             <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                <Insets bottom="10.0" left="10.0" right="100.0" top="10.0" />
                             </padding>
                             <Button text="create Tourdetails Report" layoutX="80" onAction="#onReportButtonClick"></Button>
                         </HBox>
                     </VBox>
+
+<VBox alignment="TOP_RIGHT" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+    <HBox alignment="TOP_RIGHT">
+        <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </padding>
+        <ImageView fx:id="imageView" fitHeight="600" fitWidth="600">
+        </ImageView>
+    </HBox>
+</VBox>
+
 
                 </children>
             </AnchorPane>
