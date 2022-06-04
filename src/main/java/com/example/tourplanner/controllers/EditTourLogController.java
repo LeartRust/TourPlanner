@@ -1,5 +1,7 @@
 package com.example.tourplanner.controllers;
 
+import com.example.tourplanner.models.TourLogModel;
+import com.example.tourplanner.models.TourModel;
 import com.example.tourplanner.viewmodel.CreateTourLogViewModel;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -9,13 +11,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CreateTourLogController implements Initializable {
+public class EditTourLogController implements Initializable {
     private final CreateTourLogViewModel viewModel = new CreateTourLogViewModel();
 
     @FXML
@@ -80,6 +81,15 @@ public class CreateTourLogController implements Initializable {
         });
     }
 
+    public void initData(TourLogModel Item) {
+        viewModel.setId(Item.getLogId());
+        comment.setText(Item.getComment());
+        difficulty.setText(Item.getDifficulty());
+        totalTime.setText(Item.getTotalTime());
+        rating.setText(Item.getRating());
+        distance.setText(Item.getDistance());
+    }
+
 
 
     @FXML
@@ -87,7 +97,7 @@ public class CreateTourLogController implements Initializable {
 
         if(comment.getText().isBlank() || difficulty.getText().isBlank() || totalTime.getText().isBlank() || rating.getText().isBlank() || distance.getText().isBlank()){
             errorEmptyFields.setVisible(true);
-        }else{
+        }else {
             try {
                 Integer.parseInt(distance.getText());
                 Integer.parseInt(totalTime.getText());
@@ -95,14 +105,15 @@ public class CreateTourLogController implements Initializable {
                 Stage stage = (Stage) createTourLogButton.getScene().getWindow();
 
                 //TODO get tourName through title???
-                viewModel.saveTourLog(stage.getTitle());
+                viewModel.editTourLog(stage.getTitle());
                 stage.close();
-            } catch(NumberFormatException e){
+            } catch (NumberFormatException e) {
                 //TODO logger
                 errorDistanceLabel.setVisible(true);
                 errorTimeLabel.setVisible(true);
                 errorRatingLabel.setVisible(true);
             }
         }
+
     }
 }

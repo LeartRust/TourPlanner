@@ -1,6 +1,7 @@
 package com.example.tourplanner.viewmodel;
 
 import com.example.tourplanner.businessLogic.BusinessLogicLayer;
+import com.example.tourplanner.dataAccessLayer.database.logEditinfo;
 import com.example.tourplanner.dataAccessLayer.database.loginfo;
 import com.example.tourplanner.dataAccessLayer.database.tourInfo;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,6 +13,7 @@ import java.util.Date;
 
 public class CreateTourLogViewModel {
 
+    private String id;
     private final StringProperty comment = new SimpleStringProperty("");
     private final StringProperty difficulty = new SimpleStringProperty("");
     private final StringProperty totalTime = new SimpleStringProperty("");
@@ -33,6 +35,8 @@ public class CreateTourLogViewModel {
     public StringProperty getDistance() {
         return distance;
     }
+    public void setId(String id){this.id=id;}
+    public String getId(){return id;}
 
 
     public void saveTourLog(String tourName){
@@ -43,6 +47,21 @@ public class CreateTourLogViewModel {
 
         BusinessLogicLayer bl = new BusinessLogicLayer();
         bl.addTourLog(new loginfo(tourName, date.toString(), comment.get(), difficulty.get(), totalTime.get(), rating.get(), distance.get()));
+        comment.set("");
+        difficulty.set("");
+        totalTime.set("");
+        rating.set("");
+        distance.set("");
+    }
+
+    public void editTourLog(String tourName){
+
+        //SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+        Date date = new Date(System.currentTimeMillis());
+        //System.out.println(formatter.format(date));
+
+        BusinessLogicLayer bl = new BusinessLogicLayer();
+        bl.editTourLog(new logEditinfo(id, tourName, date.toString(), comment.get(), difficulty.get(), totalTime.get(), rating.get(), distance.get()));
         comment.set("");
         difficulty.set("");
         totalTime.set("");

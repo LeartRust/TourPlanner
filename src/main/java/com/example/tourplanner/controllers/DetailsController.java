@@ -8,6 +8,7 @@ import com.example.tourplanner.reports.AllToursReport;
 import com.example.tourplanner.reports.DetailsReport;
 import com.example.tourplanner.viewmodel.CreateTourViewModel;
 import com.example.tourplanner.viewmodel.DetailsViewModel;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -27,6 +28,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 
 import java.io.*;
@@ -169,7 +171,7 @@ public class DetailsController implements Initializable {
     public void onRefreshButtonClick(ActionEvent actionEvent) {
         addToList();
     }
-    static class ButtonCell extends ListCell<TourLogModel>{
+    class ButtonCell extends ListCell<TourLogModel>{
         @Override
         public void updateItem(final TourLogModel item, boolean empty) {
             super.updateItem(item, empty);
@@ -212,6 +214,53 @@ public class DetailsController implements Initializable {
                 Region region = new Region();
                 HBox.setHgrow(region, Priority.ALWAYS);
                 root.getChildren().add(region);
+
+
+                Button buttonEdit = new Button("Edit");
+                buttonEdit.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent arg0) {
+
+                        final Stage stage = new Stage();
+                        FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("views/editTourLog.fxml"));
+                        Scene scene = null;
+                        try {
+                            scene = new Scene(fxmlLoader.load(), 1600, 900);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        stage.setResizable(false);
+
+
+
+                        //TODO set Max width to Screen
+                        //stage.setMaxWidth(Screen);
+                        stage.setTitle(tourName.getText());
+                        stage.setScene(scene);
+                        EditTourLogController controller = fxmlLoader.getController();
+                        controller.initData(item);
+                        stage.show();
+
+                        stage.setOnHiding(new EventHandler<WindowEvent>() {
+                            @Override
+                            public void handle(WindowEvent event) {
+                                Platform.runLater(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        System.out.println("Application Closed by click to Close Button(X)");
+                                        addToList();
+                                    }
+                                });
+                            }
+                        });
+
+
+                    }
+                });
+                root.getChildren().add( buttonEdit);
+
+
 
                 Button button = new Button("delete");
                 button.setOnAction(new EventHandler<ActionEvent>() {

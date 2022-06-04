@@ -1,16 +1,19 @@
 package com.example.tourplanner.controllers;
 
+import com.example.tourplanner.businessLogic.BusinessLogicLayer;
+import com.example.tourplanner.models.TourModel;
 import com.example.tourplanner.viewmodel.CreateTourViewModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class CreateTourController implements Initializable {
     private final CreateTourViewModel viewModel = new CreateTourViewModel();
@@ -31,6 +34,10 @@ public class CreateTourController implements Initializable {
     private TextField tourDistance;
     @FXML
     private Label errorEmptyFields;
+    @FXML
+    private Label errorUniqueTourname;
+
+    static BusinessLogicLayer bl = new BusinessLogicLayer();
 
 
     @Override
@@ -46,13 +53,26 @@ public class CreateTourController implements Initializable {
 
     @FXML
     protected void onCreateTourButtonClick() {
+        AtomicBoolean vergeben = new AtomicBoolean(false);
 
         if(tourName.getText().isBlank() || tourDescription.getText().isBlank() || tourFrom.getText().isBlank() || tourTo.getText().isBlank() || tourTransportType.getText().isBlank() || tourDistance.getText().isBlank()){
             errorEmptyFields.setVisible(true);
         }else{
-            viewModel.saveTour();
-            Stage stage = (Stage) createTourButton.getScene().getWindow();
-            stage.close();
+            ArrayList<TourModel> toursList = bl.getTours();
+            toursList.stream().forEach(tour ->
+                    {
+                         if(tour.getTourName().equals(tourName.getText())){
+                             vergeben.set(true);
+                         }
+                    });
+            if(vergeben.get()==false){
+                viewModel.saveTour();
+                Stage stage = (Stage) createTourButton.getScene().getWindow();
+                stage.close();
+            }else{
+                errorUniqueTourname.setVisible(true);
+            }
+
         }
 
 

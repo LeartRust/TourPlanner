@@ -10,7 +10,8 @@ import javafx.beans.property.StringProperty;
 
 public class CreateTourViewModel {
 
-    public String id;
+    private String id;
+    private  String oldTourName;
     private final StringProperty tourName = new SimpleStringProperty("");
     private final StringProperty tourDescription = new SimpleStringProperty("");
     private final StringProperty tourFrom = new SimpleStringProperty("");
@@ -36,6 +37,11 @@ public class CreateTourViewModel {
     public StringProperty getTourDistance() {
         return tourDistance;
     }
+    public void setId(String id){this.id=id;}
+    public String getId(){return id;}
+
+    public void setOldTourName(String oldTourName){this.oldTourName=oldTourName;}
+    public String getOldTourName(){return oldTourName;}
 
 
 
@@ -58,6 +64,7 @@ public class CreateTourViewModel {
         //MongoDB db = new MongoDB();
         BusinessLogicLayer bl = new BusinessLogicLayer();
         bl.EditTour(new tourEditInfo(id ,tourName.get(), tourDescription.get(), tourFrom.get(), tourTo.get(), tourTransportType.get(), tourDistance.get()));
+        bl.editManyTourLog(oldTourName, tourName.get());
         tourName.set("");
         tourDescription.set("");
         tourFrom.set("");

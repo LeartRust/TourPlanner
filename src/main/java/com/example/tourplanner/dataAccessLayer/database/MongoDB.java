@@ -328,6 +328,31 @@ public class MongoDB implements IMongoDB {
 
     }
 
+    @Override
+    public void editTourLog(String id, String tourName, String dateTime, String comment, String difficulty, String totalTime, String rating, String distance) {
+        Document log = new Document()
+                .append("dateTime", dateTime)
+                .append("comment", comment)
+                .append("difficulty", difficulty)
+                .append("totalTime", Integer.parseInt(totalTime))
+                .append("rating", Integer.parseInt(rating))
+                .append("distance", Integer.parseInt(distance) )
+                .append("ages", new Document("min", 5));
+
+        Document update = new Document("$set", log);
+        tourLogs.updateOne(Filters.eq("_id", new ObjectId(id)), update);
+    }
+
+
+    @Override
+    public void editManyTourLogs(String oldTourName, String newTourName) {
+        Document log = new Document()
+                .append("tourName", newTourName);
+
+        Document update = new Document("$set", log);
+        tourLogs.updateMany(Filters.eq("tourName", oldTourName), update);
+    }
+
 
 }
 

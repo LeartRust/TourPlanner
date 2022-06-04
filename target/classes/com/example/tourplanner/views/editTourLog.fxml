@@ -12,7 +12,7 @@
 
 <?import javafx.scene.text.Text?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.tourplanner.controllers.CreateTourLogController">
+      fx:controller="com.example.tourplanner.controllers.EditTourLogController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
@@ -20,7 +20,7 @@
         <URL value="@../styles/DemoStyles.css"/>
     </stylesheets>
 
-    <Label text="create a new tourLog:"/>
+    <Label text="Edit a tourLog:"/>
     <Label fx:id="errorEmptyFields" styleClass="ErrorText" text="Please fill every field with a valid entry!" visible="false"></Label>
     <Label text="Comment"/>
     <TextField fx:id="comment" maxWidth="200" ></TextField>
@@ -36,7 +36,7 @@
     <TextField fx:id="distance" maxWidth="200" ></TextField>
     <Label fx:id="errorDistanceLabel" styleClass="ErrorText" text="Please enter a number!" visible="false"></Label>
 
-    <Button fx:id="createTourLogButton" text="create tour log!" styleClass="mainButton" onAction="#onCreateTourLogButtonClick"/>
+    <Button fx:id="createTourLogButton" text="Edit tour log!" styleClass="mainButton" onAction="#onCreateTourLogButtonClick"/>
     <!--
         <fx:include source="listView.fxml"/>
     -->

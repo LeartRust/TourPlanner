@@ -76,4 +76,12 @@ public class BusinessLogicLayer {
     public void EditTour(tourEditInfo tour){
         this.database.EditTour(tour.id(), tour.tourName(), tour.tourDescription(), tour.tourFrom(), tour.tourTo(), tour.tourTransportType(), tour.tourDistance());
     }
+
+    public void editTourLog(logEditinfo log){
+        this.database.editTourLog(log.id(), log.tourName(), log.dateTime(), log.comment(), log.difficulty(), log.totalTime(), log.rating(), log.distance());
+    }
+
+    public void editManyTourLog(String oldTourName, String newTourName){
+        this.database.editManyTourLogs(oldTourName, newTourName);
+    }
 }

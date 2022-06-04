@@ -1,42 +1,15 @@
-TOUR UPDATE
-	Selbes fenster wie bei add, mit daten aus der datenbank ausgefüllt
-	daten ändern und dann wird die alte tour gelöscht und neue erstellt
-
-
-LOGGING
-
-
-Map/Route information
-
-
-UNIQUE FEATURE
-	Touren favorite makieren (search filter zeigt favorioten immer an) passt
-	Stern button
-	favoriten nicht löschbar
-	favoriten werden immer angezeigt wenn beim searchbar der stern auch angeklickt ist
-
-
-
 TODO LIST
 
 MANDATORY
 Unit Test
+Logging an richtige stellen setzen
 
 
 VERBESSERUNGEN
-Tour und Tourlogs required attributes (wird erst geaddet wenn alle felder ausgefüllt sind)
-
-ANDROID
-Tour modify
-Tourlog modify
-
-LEART ANDROID
-Jeder Tourname darf nur einmal vorkommen
-
 Code verschönern
 
 
-
+SONSTIGES
 MapQuest directions API
 
 ????????
