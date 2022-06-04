@@ -2,6 +2,7 @@ package com.example.tourplanner.viewmodel;
 
 import com.example.tourplanner.businessLogic.BusinessLogicLayer;
 import com.example.tourplanner.dataAccessLayer.database.MongoDB;
+import com.example.tourplanner.dataAccessLayer.database.tourEditInfo;
 import com.example.tourplanner.dataAccessLayer.database.tourInfo;
 import com.example.tourplanner.models.AddTourModel;
 import javafx.beans.property.SimpleStringProperty;
@@ -9,6 +10,7 @@ import javafx.beans.property.StringProperty;
 
 public class CreateTourViewModel {
 
+    public String id;
     private final StringProperty tourName = new SimpleStringProperty("");
     private final StringProperty tourDescription = new SimpleStringProperty("");
     private final StringProperty tourFrom = new SimpleStringProperty("");
@@ -43,6 +45,19 @@ public class CreateTourViewModel {
         //MongoDB db = new MongoDB();
         BusinessLogicLayer bl = new BusinessLogicLayer();
         bl.addTour(new tourInfo(tourName.get(), tourDescription.get(), tourFrom.get(), tourTo.get(), tourTransportType.get(), tourDistance.get()));
+        tourName.set("");
+        tourDescription.set("");
+        tourFrom.set("");
+        tourTo.set("");
+        tourTransportType.set("");
+        tourDistance.set("");
+    }
+
+    public void EditTour(){
+        //AddTourModel tour = new AddTourModel(tourName.get(), tourDescription.get(), tourFrom.get(), tourTo.get(), tourTransportType.get(), tourDistance.get());
+        //MongoDB db = new MongoDB();
+        BusinessLogicLayer bl = new BusinessLogicLayer();
+        bl.EditTour(new tourEditInfo(id ,tourName.get(), tourDescription.get(), tourFrom.get(), tourTo.get(), tourTransportType.get(), tourDistance.get()));
         tourName.set("");
         tourDescription.set("");
         tourFrom.set("");

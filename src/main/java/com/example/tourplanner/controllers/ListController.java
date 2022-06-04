@@ -4,6 +4,7 @@ import com.example.tourplanner.businessLogic.BusinessLogicLayer;
 import com.example.tourplanner.dataAccessLayer.database.MongoDB;
 import com.example.tourplanner.main;
 import com.example.tourplanner.models.TourModel;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,6 +23,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -42,6 +44,9 @@ public class ListController implements Initializable {
     private TextField searchfield;
     @FXML
     private ListView<TourModel> tourListView = new ListView<TourModel>();
+
+    @FXML
+    private Button refreshButton;
 
     //MongoDB db = new MongoDB();
     static BusinessLogicLayer bl = new BusinessLogicLayer();
@@ -168,7 +173,7 @@ public class ListController implements Initializable {
 
 
     //Callback to add text and button to the list with an delete method
-    static class ButtonCell extends ListCell<TourModel>{
+    class ButtonCell extends ListCell<TourModel>{
 
         @Override
         public void updateItem(final TourModel item, boolean empty) {
@@ -230,6 +235,53 @@ public class ListController implements Initializable {
                     }
                 });
                 root.getChildren().add( buttonFavorite);
+
+
+                Button buttonEdit = new Button("Edit");
+                buttonEdit.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent arg0) {
+                        //bl.editTour(item.getTourName());
+
+                        final Stage stage = new Stage();
+                        FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("views/editTour.fxml"));
+                        Scene scene = null;
+                        try {
+                            scene = new Scene(fxmlLoader.load(), 1600, 900);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        stage.setResizable(false);
+
+
+
+                        //TODO set Max width to Screen
+                        //stage.setMaxWidth(Screen);
+                        stage.setTitle("Edit Tour");
+                        stage.setScene(scene);
+                        EditTourController controller = fxmlLoader.getController();
+                        controller.initData(item);
+                        stage.show();
+
+                        stage.setOnHiding(new EventHandler<WindowEvent>() {
+                            @Override
+                            public void handle(WindowEvent event) {
+                                Platform.runLater(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        System.out.println("Application Closed by click to Close Button(X)");
+                                        addToList();
+                                        filterList(searchfield.getText());
+                                    }
+                                });
+                            }
+                        });
+
+
+                    }
+                });
+                root.getChildren().add( buttonEdit);
 
 
                 Button buttonDelete = new Button("delete");

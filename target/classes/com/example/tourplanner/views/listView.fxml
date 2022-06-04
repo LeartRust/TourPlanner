@@ -37,7 +37,7 @@
     <ToolBar AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" prefHeight="40.0" prefWidth="318.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
         <Button text="Add" layoutX="5" layoutY="790" onAction="#onAddTourButtonClick"></Button>
         <Pane HBox.hgrow="ALWAYS" />
-        <Button text="Refresh" layoutX="80" layoutY="790" onAction="#onRefreshButtonClick"></Button>
+        <Button fx:id="refreshButton" text="Refresh" layoutX="80" layoutY="790" onAction="#onRefreshButtonClick"></Button>
     </ToolBar>
 
 

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import java.net.URL?>
+<?import javafx.scene.control.TextField?>
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.tourplanner.controllers.EditTourController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <stylesheets>
+        <URL value="@../styles/DemoStyles.css"/>
+    </stylesheets>
+
+    <Label text="create a new tour:"/>
+    <Label fx:id="errorEmptyFields" styleClass="ErrorText" text="Please fill every field with a valid entry!" visible="false"></Label>
+    <Label text="Name"/>
+    <TextField fx:id="tourName" maxWidth="200" ></TextField>
+    <Label text="Tour description"/>
+    <TextField fx:id="tourDescription" maxWidth="200" ></TextField>
+    <Label text="from"/>
+    <TextField fx:id="tourFrom" maxWidth="200" ></TextField>
+    <Label text="to"/>
+    <TextField fx:id="tourTo" maxWidth="200" ></TextField>
+    <Label text="Transport type"/>
+    <TextField fx:id="tourTransportType" maxWidth="200" ></TextField>
+    <Label text="Tour Distance"/>
+    <TextField fx:id="tourDistance" maxWidth="200" ></TextField>
+
+    <Button fx:id="editTourButton" text="Edit tour!" styleClass="mainButton" onAction="#onEditTourButtonClick"/>
+<!--
+    <fx:include source="listView.fxml"/>
+-->
+
+</VBox>

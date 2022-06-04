@@ -1,9 +1,6 @@
 package com.example.tourplanner.businessLogic;
 
-import com.example.tourplanner.dataAccessLayer.database.IMongoDB;
-import com.example.tourplanner.dataAccessLayer.database.MongoDB;
-import com.example.tourplanner.dataAccessLayer.database.loginfo;
-import com.example.tourplanner.dataAccessLayer.database.tourInfo;
+import com.example.tourplanner.dataAccessLayer.database.*;
 import com.example.tourplanner.models.TourLogModel;
 import com.example.tourplanner.models.TourModel;
 
@@ -75,4 +72,8 @@ public class BusinessLogicLayer {
     }
 
     public void changeFavorite(String id, String isFavorite) {this.database.changeFavorite(id, isFavorite);}
+
+    public void EditTour(tourEditInfo tour){
+        this.database.EditTour(tour.id(), tour.tourName(), tour.tourDescription(), tour.tourFrom(), tour.tourTo(), tour.tourTransportType(), tour.tourDistance());
+    }
 }

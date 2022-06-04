@@ -306,6 +306,28 @@ public class MongoDB implements IMongoDB {
 
     }
 
+    @Override
+    public void EditTour(String id, String tourName, String tourDescription, String tourFrom, String tourTo, String tourTransportType, String tourDistance) {
+
+        tours.updateMany(Filters.eq("_id", new ObjectId(id)), Updates.set("tourName", tourName));
+
+
+        Document tour = new Document()
+                .append("tourName", tourName)
+                .append("tourDescription", tourDescription)
+                .append("tourFrom", tourFrom)
+                .append("tourTo", tourTo)
+                .append("tourTransportType", tourTransportType)
+                .append("tourDistance", tourDistance)
+                .append("isFavorite", false)
+                .append("ages", new Document("min", 5));
+
+        Document update = new Document("$set", tour);
+
+        tours.updateOne(Filters.eq("_id", new ObjectId(id)), update);
+
+    }
+
 
 }
 
