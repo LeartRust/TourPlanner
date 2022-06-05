@@ -1,19 +1,17 @@
 package com.example.tourplanner.dataAccessLayer.database;
 
+import com.example.tourplanner.logger.ILoggerWrapper;
+import com.example.tourplanner.logger.LoggerFactory;
 import com.example.tourplanner.models.TourLogModel;
 import com.example.tourplanner.models.TourModel;
-import com.mongodb.BasicDBObject;
 import com.mongodb.MongoException;
 import com.mongodb.MongoWriteException;
-import com.mongodb.bulk.BulkWriteResult;
 import com.mongodb.client.*;
-
 import com.mongodb.client.model.*;
 import com.mongodb.client.result.DeleteResult;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +21,8 @@ import static com.mongodb.client.model.Filters.eq;
 
 public class MongoDB implements IMongoDB {
 
+    private static final ILoggerWrapper logger = LoggerFactory.getLogger();
+
     Properties prop=new Properties();
 
     FileInputStream ip;
@@ -31,11 +31,13 @@ public class MongoDB implements IMongoDB {
         try {
             ip = new FileInputStream("src/main/resources/com/example/tourplanner/config.properties");
         } catch (FileNotFoundException e) {
+            logger.error("MongoDB.java MongoDB FileNotFoundException");
             throw new RuntimeException(e);
         }
         try {
             prop.load(ip);
         } catch (IOException e) {
+            logger.error("MongoDB.java MongoDB IOException");
             throw new RuntimeException(e);
         }
     }
@@ -44,11 +46,6 @@ public class MongoDB implements IMongoDB {
     MongoDatabase database = client.getDatabase(prop.getProperty("databaseName"));
     MongoCollection<Document> tours = database.getCollection(prop.getProperty("toursCollection"));
     MongoCollection<Document> tourLogs = database.getCollection(prop.getProperty("tourLogsCollection"));
-
-    public void createDb(){
-        //TODO manage mongodb imports, somehow not working sometimes
-        //TODO make tourName unique https://www.educba.com/mongodb-unique/
-    }
 
     @Override
     public void addTour(String tourName, String tourDescription, String tourFrom, String tourTo, String tourTransportType, String tourDistance) {
@@ -65,13 +62,23 @@ public class MongoDB implements IMongoDB {
 
     }
 
-    public void exportTours() throws IOException {
-        Runtime.getRuntime().exec("mongoexport --host localhost --port 27017 --db TourPlanner --collection Tours --out src/main/resources/com/example/tourplanner/exports/Tours.json");
+    public void exportTours(){
+        try {
+            Runtime.getRuntime().exec("mongoexport --host localhost --port 27017 --db TourPlanner --collection Tours --out src/main/resources/com/example/tourplanner/exports/Tours.json");
+        } catch (IOException e) {
+            logger.error("MongoDB.java exportTours IOException");
+            throw new RuntimeException(e);
+        }
         //Runtime.getRuntime().exec("C:/Program Files/MongoDB/Tools/100/bin/mongoexport.exe --host localhost --port 27017 --db TourPlanner --collection Tours --out src/main/resources/com/example/tourplanner/exports/Tours.json");
     }
 
-    public void exportTourLogs() throws IOException {
-        Runtime.getRuntime().exec("mongoexport --host localhost --port 27017 --db TourPlanner --collection TourLogs --out ../TourPlanner/src/main/resources/com/example/tourplanner/exports/TourLogs.json");
+    public void exportTourLogs(){
+        try {
+            Runtime.getRuntime().exec("mongoexport --host localhost --port 27017 --db TourPlanner --collection TourLogs --out ../TourPlanner/src/main/resources/com/example/tourplanner/exports/TourLogs.json");
+        } catch (IOException e) {
+            logger.error("MongoDB.java exportTourLogs IOException");
+            throw new RuntimeException(e);
+        }
         //Runtime.getRuntime().exec("C:/Program Files/MongoDB/Tools/100/bin/mongoexport.exe --host localhost --port 27017 --db TourPlanner --collection TourLogs --out ../TourPlanner/src/main/resources/com/example/tourplanner/exports/TourLogs.json");
     }
 
@@ -98,6 +105,7 @@ public class MongoDB implements IMongoDB {
                     }
                 }
             } catch (IOException e) {
+                logger.error("MongoDB.java importTours IOException");
                 e.printStackTrace();
             }
 
@@ -106,6 +114,7 @@ public class MongoDB implements IMongoDB {
             }
 
         } catch (MongoWriteException e) {
+            logger.error("MongoDB.java importTours MongoWriteException");
             System.out.println("Error");
         }
 
@@ -134,6 +143,7 @@ public class MongoDB implements IMongoDB {
                     }
                 }
             } catch (IOException e) {
+                logger.error("MongoDB.java importToursLogs IOException");
                 e.printStackTrace();
             }
 
@@ -142,6 +152,7 @@ public class MongoDB implements IMongoDB {
             }
 
         } catch (MongoWriteException e) {
+            logger.error("MongoDB.java importToursLogs MongoWriteException");
             System.out.println("Error");
         }
 
@@ -165,10 +176,9 @@ public class MongoDB implements IMongoDB {
     public void deleteTourLog(String item) {
         Bson query = eq("_id", new ObjectId(item));
         try {
-            DeleteResult result = tourLogs.deleteOne(query);
-            System.out.println("Deleted document count: " + result.getDeletedCount());
+            tourLogs.deleteOne(query);
         } catch (MongoException me) {
-            System.err.println("Unable to delete due to an error: " + me);
+            logger.error("MongoDB.java deleteTourLog MongoException");
         }
     }
 
@@ -208,10 +218,9 @@ public class MongoDB implements IMongoDB {
     public void deleteTourLogs(String item) {
         Bson query = eq("tourName", item);
         try {
-            DeleteResult result = tourLogs.deleteMany(query);
-            System.out.println("Deleted document count: " + result.getDeletedCount());
+            tourLogs.deleteMany(query);
         } catch (MongoException me) {
-            System.err.println("Unable to delete due to an error: " + me);
+            logger.error("MongoDB.java deleteTourLogs MongoException");
         }
     }
 
@@ -234,20 +243,13 @@ public class MongoDB implements IMongoDB {
 
     @Override
     public void deleteTour(String item) {
-        //tours.find().forEach(document -> System.out.println("TESTT " + document.get("tourName")));
-
-        //document.remove("tourName", item)
-
         Bson query = eq("tourName", item);
         try {
-            DeleteResult result = tours.deleteOne(query);
-            System.out.println("Deleted document count: " + result.getDeletedCount());
+            tours.deleteOne(query);
         } catch (MongoException me) {
-            System.err.println("Unable to delete due to an error: " + me);
+            logger.error("MongoDB.java deleteTour MongoException");
         }
     }
-
-
 
     public static IMongoDB getDatabase(){
          return new MongoDB();
