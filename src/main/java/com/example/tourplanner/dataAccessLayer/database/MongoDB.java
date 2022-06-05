@@ -254,7 +254,7 @@ public class MongoDB implements IMongoDB {
     }
 
     @Override
-    public TourModel getTour(String tourName){
+    public TourModel getTourByName(String tourName){
 
 
         ArrayList<TourModel> toursList = new ArrayList<>();
@@ -272,6 +272,27 @@ public class MongoDB implements IMongoDB {
 
             TourModel testTour = toursList.get(0);
             return testTour;
+    }
+
+    @Override
+    public TourModel getTourById(String id){
+
+
+        ArrayList<TourModel> toursList = new ArrayList<>();
+        tours.find(eq("_id", new ObjectId(id))).forEach(document ->  toursList.add(new TourModel(
+                document.get("_id").toString(),
+                document.get("tourName").toString(),
+                document.get("tourDescription").toString(),
+                document.get("tourFrom").toString(),
+                document.get("tourTo").toString(),
+                document.get("tourTransportType").toString(),
+                document.get("tourDistance").toString(),
+                document.get("isFavorite").toString())));
+
+
+
+        TourModel testTour = toursList.get(0);
+        return testTour;
     }
 
     private TourModel getValuesFromObject(Document doc) {

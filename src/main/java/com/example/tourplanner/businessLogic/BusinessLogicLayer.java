@@ -21,8 +21,12 @@ public class BusinessLogicLayer {
        this.database.addTour(tour.tourName(), tour.tourDescription(), tour.tourFrom(), tour.tourTo(), tour.tourTransportType(), tour.tourDistance());
     }
 
-    public TourModel getTour(String tour) {
-        return this.database.getTour(tour);
+    public TourModel getTourByName(String tour) {
+        return this.database.getTourByName(tour);
+    }
+
+    public TourModel getTourById(String tour) {
+        return this.database.getTourById(tour);
     }
 
     public ArrayList<TourModel> getTours(){

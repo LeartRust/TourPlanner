@@ -13,7 +13,8 @@ public interface IMongoDB {
 
     void deleteTour(String item);
 
-    TourModel getTour(String tourName);
+    TourModel getTourByName(String tourName);
+    TourModel getTourById(String tour);
 
     void exportTours() throws IOException;
 
@@ -42,4 +43,5 @@ public interface IMongoDB {
     void editTourLog(String id, String tourName, String dateTime, String comment, String difficulty, String totalTime, String rating, String distance);
 
     void editManyTourLogs(String oldTourName, String newTourName);
+
 }
