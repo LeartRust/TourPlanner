@@ -1,8 +1,5 @@
 package com.example.tourplanner.models;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 public class TourModel {
     private String tourId;
     private String tourName;

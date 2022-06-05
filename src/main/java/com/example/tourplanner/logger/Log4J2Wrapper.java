@@ -3,8 +3,6 @@ package com.example.tourplanner.logger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-// Wraps the log4j2 logger instances by realizing interface ILoggerWrapper
-// This avoids direct dependencies to log4j2 package
 public class Log4J2Wrapper implements ILoggerWrapper {
 
     private Logger logger;
