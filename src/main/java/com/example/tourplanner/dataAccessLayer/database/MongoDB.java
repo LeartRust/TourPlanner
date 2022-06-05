@@ -258,13 +258,26 @@ public class MongoDB implements IMongoDB {
 
             TourModel emptyTour = new TourModel("","","","","","","", "");
             Bson projectionFields = Projections.fields(
-                    Projections.include("_id", "tourName", "tourDescription", "tourFrom", "tourTo", "tourTransportType", "tourDistance"),
+                    Projections.include("_id", "tourName", "tourDescription", "tourFrom", "tourTo", "tourTransportType", "tourDistance", "isFavorite"),
                     Projections.excludeId());
 
             Document doc = tours.find(eq("tourName", tourName))
                     .projection(projectionFields)
                     .sort(Sorts.descending("tourName"))
                     .first();
+
+        ArrayList<TourModel> toursList = new ArrayList<>();
+        tours.find(eq("tourName", tourName)).forEach(document ->  toursList.add(new TourModel(
+                document.get("_id").toString(),
+                document.get("tourName").toString(),
+                document.get("tourDescription").toString(),
+                document.get("tourFrom").toString(),
+                document.get("tourTo").toString(),
+                document.get("tourTransportType").toString(),
+                document.get("tourDistance").toString(),
+                document.get("isFavorite").toString())));
+
+
 
             if (doc == null) {
                 System.out.println("No results found.");
@@ -274,6 +287,8 @@ public class MongoDB implements IMongoDB {
                 TourModel tour = getValuesFromObject(doc);
                 return tour;
             }
+            TourModel testTour = toursList.get(0);
+
 /*        ArrayList<TourModel> searchedTours = new ArrayList<>();
         tours.find().forEach(document ->  searchedTours.add(new TourModel(
                 document.get("_id").toString(),
@@ -285,7 +300,7 @@ public class MongoDB implements IMongoDB {
                 document.get("tourDistance").toString())));
         searchedTours.stream().forEach( tour -> System.out.println("Searched: " + tour.getTourName()));
    */
-        return emptyTour;
+        return testTour;
         //return new TourModel(doc.get(1).toString(), doc.get(2).toString(), doc.get(3).toString(), doc.get(4).toString(), doc.get(5).toString(), doc.get(6).toString(), doc.get(7).toString());
     }
 
