@@ -257,8 +257,6 @@ public class MongoDB implements IMongoDB {
 
     @Override
     public TourModel getTourByName(String tourName){
-
-
         ArrayList<TourModel> toursList = new ArrayList<>();
         tours.find(eq("tourName", tourName)).forEach(document ->  toursList.add(new TourModel(
                 document.get("_id").toString(),
@@ -271,15 +269,15 @@ public class MongoDB implements IMongoDB {
                 document.get("isFavorite").toString())));
 
 
-
-            TourModel testTour = toursList.get(0);
-            return testTour;
+        TourModel testTour = new TourModel("","","","","","","","");
+        if(toursList.size() != 0){
+                testTour = toursList.get(0);
+            }
+        return testTour;
     }
 
     @Override
     public TourModel getTourById(String id){
-
-
         ArrayList<TourModel> toursList = new ArrayList<>();
         tours.find(eq("_id", new ObjectId(id))).forEach(document ->  toursList.add(new TourModel(
                 document.get("_id").toString(),
@@ -292,9 +290,37 @@ public class MongoDB implements IMongoDB {
                 document.get("isFavorite").toString())));
 
 
-
-        TourModel testTour = toursList.get(0);
+        TourModel testTour = new TourModel("","","","","","","","");
+        if(toursList.size() != 0){
+            testTour = toursList.get(0);
+        }
         return testTour;
+    }
+
+
+    @Override
+    public TourLogModel getFirstTourLog(){
+        ArrayList<TourLogModel> tourLogsList = new ArrayList<>();
+        tourLogs.find().forEach(document ->  tourLogsList.add(new TourLogModel(
+                document.get("_id").toString(),
+                document.get("tourName").toString(),
+                document.get("dateTime").toString(),
+                document.get("comment").toString(),
+                document.get("difficulty").toString(),
+                document.get("totalTime").toString(),
+                document.get("rating").toString(),
+                document.get("distance").toString())));
+
+        TourLogModel testTour = new TourLogModel("","","","","","","","");
+        if(tourLogsList.size() != 0){
+            testTour = tourLogsList.get(0);
+        }
+        return testTour;
+    }
+
+    @Override
+    public void dropDb(){
+        this.database.drop();
     }
 
     private TourModel getValuesFromObject(Document doc) {

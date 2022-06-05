@@ -100,4 +100,12 @@ public class BusinessLogicLayer {
     public void editManyTourLog(String oldTourName, String newTourName){
         this.database.editManyTourLogs(oldTourName, newTourName);
     }
+
+    public TourLogModel getFirstTourLog() {
+        return this.database.getFirstTourLog();
+    }
+
+    public void dropDatabase() {
+        this.database.dropDb();
+    }
 }

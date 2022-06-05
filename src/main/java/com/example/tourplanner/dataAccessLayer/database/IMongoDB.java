@@ -46,4 +46,7 @@ public interface IMongoDB {
 
     void editManyTourLogs(String oldTourName, String newTourName);
 
+    TourLogModel getFirstTourLog();
+
+    void dropDb();
 }
