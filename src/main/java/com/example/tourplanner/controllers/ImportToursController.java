@@ -10,12 +10,12 @@ import javafx.stage.Stage;
 
 public class ImportToursController {
     static BusinessLogicLayer bl = new BusinessLogicLayer();
-
     @FXML
     Label importLabel;
+
     public void onFileDragOver(DragEvent event) {
         if (event.getDragboard().hasFiles()) {
-            /* allow for both copying and moving, whatever user chooses */
+            //allow for both copying and moving, whatever user chooses
             event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
         }
 
@@ -30,8 +30,7 @@ public class ImportToursController {
             bl.importTours(db.getFiles().toString().replace("\\", "/").replace("[", "").replace("]", ""));
             success = true;
         }
-        /* let the source know whether the string was successfully
-         * transferred and used */
+        //let the source know whether the string was successfully transferred and used
 
         event.setDropCompleted(success);
 

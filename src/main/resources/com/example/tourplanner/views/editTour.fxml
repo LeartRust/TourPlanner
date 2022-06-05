@@ -3,10 +3,10 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
 <?import java.net.URL?>
 <?import javafx.scene.control.TextField?>
+
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.tourplanner.controllers.EditTourController">
     <padding>
@@ -33,8 +33,4 @@
     <TextField fx:id="tourDistance" maxWidth="200" ></TextField>
 
     <Button fx:id="editTourButton" text="Edit tour!" styleClass="mainButton" onAction="#onEditTourButtonClick"/>
-<!--
-    <fx:include source="listView.fxml"/>
--->
-
 </VBox>

@@ -1,3 +1,0 @@
-{"_id":{"$oid":"62977082017d4a1be76179c3"},"tourName":"CL-Final","dateTime":"Wed Jun 01 15:58:26 CEST 2022","comment":"Test","difficulty":"Einfach","totalTime":100,"rating":6,"distance":50,"ages":{"min":5}}
-{"_id":{"$oid":"62977098017d4a1be76179c5"},"tourName":"CL-Final","dateTime":"Wed Jun 01 15:58:48 CEST 2022","comment":"A","difficulty":"B","totalTime":10,"rating":3,"distance":10,"ages":{"min":5}}
-{"_id":{"$oid":"629770ae017d4a1be76179c7"},"tourName":"Family Trip","dateTime":"Wed Jun 01 15:59:10 CEST 2022","comment":"B","difficulty":"C","totalTime":50,"rating":10,"distance":100,"ages":{"min":5}}

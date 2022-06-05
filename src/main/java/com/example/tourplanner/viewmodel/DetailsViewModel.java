@@ -35,18 +35,12 @@ public class DetailsViewModel {
     }
 
     public void setTourDetails(TourModel detailsTour){
-        //TourModel detailsTour = bl.getTour(newTourName);
-
         tourName.set(detailsTour.getTourName());
         tourDescription.set(detailsTour.getTourDescription());
         tourFrom.set(detailsTour.getTourFrom());
         tourTo.set(detailsTour.getTourTo());
         tourTransportType.set(detailsTour.getTourTransportType());
         tourDistance.set(detailsTour.getTourDistance());
-
-        System.out.println("tstt: " + tourName);
-        System.out.println("tstt: " + tourTo);
-        System.out.println("tstt: " + tourDistance);
     }
 
 }

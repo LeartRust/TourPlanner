@@ -8,9 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -54,7 +52,6 @@ public class EditTourController implements Initializable {
     public void initData(TourModel Item) {
       viewModel.setId(Item.getTourId());
       viewModel.setOldTourName(Item.getTourName());
-
       tourName.setText(Item.getTourName());
       tourDescription.setText(Item.getTourDescription());
       tourFrom.setText(Item.getTourFrom());
@@ -63,10 +60,9 @@ public class EditTourController implements Initializable {
       tourDistance.setText(Item.getTourDistance());
     }
 
-
     @FXML
     protected void onEditTourButtonClick() {
-        AtomicBoolean vergeben = new AtomicBoolean(false);
+        AtomicBoolean isUsed = new AtomicBoolean(false);
 
         if(tourName.getText().isBlank() || tourDescription.getText().isBlank() || tourFrom.getText().isBlank() || tourTo.getText().isBlank() || tourTransportType.getText().isBlank() || tourDistance.getText().isBlank()){
             errorEmptyFields.setVisible(true);
@@ -75,10 +71,10 @@ public class EditTourController implements Initializable {
             toursList.stream().forEach(tour ->
             {
                 if(tour.getTourName().equals(tourName.getText())){
-                    vergeben.set(true);
+                    isUsed.set(true);
                 }
             });
-            if(vergeben.get()==false){
+            if(isUsed.get()==false){
                 viewModel.EditTour();
                 Stage stage = (Stage) editTourButton.getScene().getWindow();
                 stage.close();
@@ -86,8 +82,6 @@ public class EditTourController implements Initializable {
                 errorUniqueTourname.setVisible(true);
             }
         }
-
-
     }
 
 }

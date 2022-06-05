@@ -307,7 +307,7 @@ public class MongoDB implements IMongoDB {
     }
 
     @Override
-    public void EditTour(String id, String tourName, String tourDescription, String tourFrom, String tourTo, String tourTransportType, String tourDistance) {
+    public void editTour(String id, String tourName, String tourDescription, String tourFrom, String tourTo, String tourTransportType, String tourDistance) {
 
         tours.updateMany(Filters.eq("_id", new ObjectId(id)), Updates.set("tourName", tourName));
 

@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-
 <?import javafx.geometry.Insets?>
 <?import java.net.URL?>
 
-<?import javafx.scene.text.Text?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.tourplanner.controllers.EditTourLogController">
     <padding>
@@ -37,8 +31,4 @@
     <Label fx:id="errorDistanceLabel" styleClass="ErrorText" text="Please enter a number!" visible="false"></Label>
 
     <Button fx:id="createTourLogButton" text="Edit tour log!" styleClass="mainButton" onAction="#onCreateTourLogButtonClick"/>
-    <!--
-        <fx:include source="listView.fxml"/>
-    -->
-
 </VBox>

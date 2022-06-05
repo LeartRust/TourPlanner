@@ -3,12 +3,8 @@ package com.example.tourplanner.viewmodel;
 import com.example.tourplanner.businessLogic.BusinessLogicLayer;
 import com.example.tourplanner.dataAccessLayer.database.logEditinfo;
 import com.example.tourplanner.dataAccessLayer.database.loginfo;
-import com.example.tourplanner.dataAccessLayer.database.tourInfo;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.stage.Stage;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CreateTourLogViewModel {
@@ -41,9 +37,7 @@ public class CreateTourLogViewModel {
 
     public void saveTourLog(String tourName){
 
-        //SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
         Date date = new Date(System.currentTimeMillis());
-        //System.out.println(formatter.format(date));
 
         BusinessLogicLayer bl = new BusinessLogicLayer();
         bl.addTourLog(new loginfo(tourName, date.toString(), comment.get(), difficulty.get(), totalTime.get(), rating.get(), distance.get()));
@@ -56,9 +50,7 @@ public class CreateTourLogViewModel {
 
     public void editTourLog(String tourName){
 
-        //SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
         Date date = new Date(System.currentTimeMillis());
-        //System.out.println(formatter.format(date));
 
         BusinessLogicLayer bl = new BusinessLogicLayer();
         bl.editTourLog(new logEditinfo(id, tourName, date.toString(), comment.get(), difficulty.get(), totalTime.get(), rating.get(), distance.get()));

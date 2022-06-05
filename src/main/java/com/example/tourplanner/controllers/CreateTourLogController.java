@@ -9,19 +9,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CreateTourLogController implements Initializable {
-    private final CreateTourLogViewModel viewModel = new CreateTourLogViewModel();
 
+    private final CreateTourLogViewModel viewModel = new CreateTourLogViewModel();
     @FXML
     private Button createTourLogButton;
-
-
     @FXML
     private TextField comment;
     @FXML
@@ -79,8 +75,6 @@ public class CreateTourLogController implements Initializable {
             }
         });
     }
-
-
 
     @FXML
     public void onCreateTourLogButtonClick(ActionEvent actionEvent) {

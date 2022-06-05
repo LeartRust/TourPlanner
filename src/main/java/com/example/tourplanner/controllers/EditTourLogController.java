@@ -1,7 +1,8 @@
 package com.example.tourplanner.controllers;
 
+import com.example.tourplanner.logger.ILoggerWrapper;
+import com.example.tourplanner.logger.LoggerFactory;
 import com.example.tourplanner.models.TourLogModel;
-import com.example.tourplanner.models.TourModel;
 import com.example.tourplanner.viewmodel.CreateTourLogViewModel;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,17 +13,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class EditTourLogController implements Initializable {
-    private final CreateTourLogViewModel viewModel = new CreateTourLogViewModel();
 
+    private final CreateTourLogViewModel viewModel = new CreateTourLogViewModel();
     @FXML
     private Button createTourLogButton;
-
-
     @FXML
     private TextField comment;
     @FXML
@@ -41,6 +39,8 @@ public class EditTourLogController implements Initializable {
     private Label errorTimeLabel;
     @FXML
     private Label errorEmptyFields;
+
+    private static final ILoggerWrapper logger = LoggerFactory.getLogger();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -90,8 +90,6 @@ public class EditTourLogController implements Initializable {
         distance.setText(Item.getDistance());
     }
 
-
-
     @FXML
     public void onCreateTourLogButtonClick(ActionEvent actionEvent) {
 
@@ -103,12 +101,10 @@ public class EditTourLogController implements Initializable {
                 Integer.parseInt(totalTime.getText());
                 Integer.parseInt(rating.getText());
                 Stage stage = (Stage) createTourLogButton.getScene().getWindow();
-
-                //TODO get tourName through title???
                 viewModel.editTourLog(stage.getTitle());
                 stage.close();
             } catch (NumberFormatException e) {
-                //TODO logger
+                logger.error("EditTourLogController.java onCreateTourLogButtonClick NumberFormatException");
                 errorDistanceLabel.setVisible(true);
                 errorTimeLabel.setVisible(true);
                 errorRatingLabel.setVisible(true);

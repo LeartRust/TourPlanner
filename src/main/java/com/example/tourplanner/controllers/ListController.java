@@ -1,7 +1,8 @@
 package com.example.tourplanner.controllers;
 
 import com.example.tourplanner.businessLogic.BusinessLogicLayer;
-import com.example.tourplanner.dataAccessLayer.database.MongoDB;
+import com.example.tourplanner.logger.ILoggerWrapper;
+import com.example.tourplanner.logger.LoggerFactory;
 import com.example.tourplanner.main;
 import com.example.tourplanner.models.TourModel;
 import javafx.application.Platform;
@@ -12,24 +13,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.EventListener;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
@@ -37,32 +33,20 @@ import java.util.function.Consumer;
 public class ListController implements Initializable {
 
     private Consumer<String> onSelectTour;
-
     @FXML
     private  ToggleButton FavoriteFilterButton;
     @FXML
     private TextField searchfield;
     @FXML
     private ListView<TourModel> tourListView = new ListView<TourModel>();
-
     @FXML
     private Button refreshButton;
-
-    //MongoDB db = new MongoDB();
     static BusinessLogicLayer bl = new BusinessLogicLayer();
+    private static final ILoggerWrapper logger = LoggerFactory.getLogger();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //bl.importTours();
         addToList();
-
-        //export
-        /*try {
-            bl.exportTours();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
     }
 
     public void addToList(){
@@ -115,19 +99,35 @@ public class ListController implements Initializable {
     }
 
     @FXML
-    protected void onAddTourButtonClick() throws IOException {
+    protected void onAddTourButtonClick(){
         final Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("views/createTour.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1600, 900);
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load(), 1600, 900);
+        } catch (IOException e) {
+            logger.error("ListController.java onAddTourButtonClick IOException");
+            throw new RuntimeException(e);
+        }
         stage.setResizable(false);
 
-
-
-        //TODO set Max width to Screen
-        //stage.setMaxWidth(Screen);
-        stage.setTitle("Tour-Planner");
+        stage.setTitle("Create Tour");
         stage.setScene(scene);
         stage.show();
+
+        //Updates the ListView after the AddWindow is finished
+        stage.setOnHiding(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        addToList();
+                        filterList(searchfield.getText());
+                    }
+                });
+            }
+        });
     }
 
     public void onRefreshButtonClick(ActionEvent actionEvent) {
@@ -135,15 +135,11 @@ public class ListController implements Initializable {
         filterList(searchfield.getText());
     }
 
-    public void handleMouseClick(MouseEvent mouseEvent) throws IOException {
-
-       System.out.println("clicked on " + tourListView.getSelectionModel().getSelectedItem().getTourName());
+    public void handleMouseClick(MouseEvent mouseEvent){
        this.onSelectTour.accept(tourListView.getSelectionModel().getSelectedItem().getTourName());
-        //DetailsController dc = new DetailsController();
-        //detailsController.initData(tourListView.getSelectionModel().getSelectedItem());
    }
 
-   public void subscribe(Consumer<String> consumer){
+    public void subscribe(Consumer<String> consumer){
         this.onSelectTour=consumer;
    }
 
@@ -157,7 +153,6 @@ public class ListController implements Initializable {
 
     public void onFavoriteFilterButtonClick(ActionEvent actionEvent) {
                 if(FavoriteFilterButton.isSelected() == true){
-
                     ImageView starimg = new ImageView("https://cdn-icons-png.flaticon.com/512/1828/1828614.png");
                     starimg.setFitHeight(15);
                     starimg.setFitWidth(15);
@@ -168,11 +163,9 @@ public class ListController implements Initializable {
                     starimg.setFitWidth(15);
                     FavoriteFilterButton.setGraphic(starimg);
                 }
-
     }
 
-
-    //Callback to add text and button to the list with an delete method
+    //Callback to add text and buttons to the list with own methods
     class ButtonCell extends ListCell<TourModel>{
 
         @Override
@@ -205,7 +198,6 @@ public class ListController implements Initializable {
                     starimg.setFitWidth(15);
                     buttonFavorite.setGraphic(starimg);
                 }
-
 
                 buttonFavorite.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
@@ -241,7 +233,6 @@ public class ListController implements Initializable {
                 buttonEdit.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent arg0) {
-                        //bl.editTour(item.getTourName());
 
                         final Stage stage = new Stage();
                         FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("views/editTour.fxml"));
@@ -253,24 +244,19 @@ public class ListController implements Initializable {
                         }
                         stage.setResizable(false);
 
-
-
-                        //TODO set Max width to Screen
-                        //stage.setMaxWidth(Screen);
                         stage.setTitle("Edit Tour");
                         stage.setScene(scene);
                         EditTourController controller = fxmlLoader.getController();
                         controller.initData(item);
                         stage.show();
 
+                        //Updates the ListView after the EditWindow is finished
                         stage.setOnHiding(new EventHandler<WindowEvent>() {
                             @Override
                             public void handle(WindowEvent event) {
                                 Platform.runLater(new Runnable() {
-
                                     @Override
                                     public void run() {
-                                        System.out.println("Application Closed by click to Close Button(X)");
                                         addToList();
                                         filterList(searchfield.getText());
                                     }
@@ -290,6 +276,8 @@ public class ListController implements Initializable {
                     public void handle(ActionEvent arg0) {
                         bl.deleteTour(item.getTourName());
                         bl.deleteTourLogs(item.getTourName());
+                        addToList();
+                        filterList(searchfield.getText());
                     }
                 });
                 root.getChildren().add( buttonDelete);
@@ -298,8 +286,4 @@ public class ListController implements Initializable {
         }
 
     }
-
-
-
-
 }

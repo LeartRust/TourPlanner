@@ -9,15 +9,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class CreateTourController implements Initializable {
-    private final CreateTourViewModel viewModel = new CreateTourViewModel();
 
+    private final CreateTourViewModel viewModel = new CreateTourViewModel();
     @FXML
     private Button createTourButton;
     @FXML
@@ -36,9 +35,7 @@ public class CreateTourController implements Initializable {
     private Label errorEmptyFields;
     @FXML
     private Label errorUniqueTourname;
-
     static BusinessLogicLayer bl = new BusinessLogicLayer();
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,10 +47,9 @@ public class CreateTourController implements Initializable {
         tourDistance.textProperty().bindBidirectional(viewModel.getTourDistance());
     }
 
-
     @FXML
     protected void onCreateTourButtonClick() {
-        AtomicBoolean vergeben = new AtomicBoolean(false);
+        AtomicBoolean isUsed = new AtomicBoolean(false);
 
         if(tourName.getText().isBlank() || tourDescription.getText().isBlank() || tourFrom.getText().isBlank() || tourTo.getText().isBlank() || tourTransportType.getText().isBlank() || tourDistance.getText().isBlank()){
             errorEmptyFields.setVisible(true);
@@ -62,20 +58,17 @@ public class CreateTourController implements Initializable {
             toursList.stream().forEach(tour ->
                     {
                          if(tour.getTourName().equals(tourName.getText())){
-                             vergeben.set(true);
+                             isUsed.set(true);
                          }
                     });
-            if(vergeben.get()==false){
+            if(isUsed.get()==false){
                 viewModel.saveTour();
                 Stage stage = (Stage) createTourButton.getScene().getWindow();
                 stage.close();
             }else{
                 errorUniqueTourname.setVisible(true);
             }
-
         }
-
-
     }
 
 }
