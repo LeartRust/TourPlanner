@@ -1,0 +1,2 @@
+{"_id":{"$oid":"62977082017d4a1be76179c3"},"tourName":"CL-Finals","dateTime":"Wed Jun 01 15:58:26 CEST 2022","comment":"Test","difficulty":"Einfach","totalTime":100,"rating":6,"distance":50,"ages":{"min":5}}
+{"_id":{"$oid":"62977098017d4a1be76179c5"},"tourName":"CL-Finals","dateTime":"Sat Jun 04 17:00:37 CEST 2022","comment":"C","difficulty":"D","totalTime":100,"rating":5,"distance":1,"ages":{"min":5}}

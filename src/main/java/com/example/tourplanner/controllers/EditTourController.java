@@ -35,6 +35,7 @@ public class EditTourController implements Initializable {
     private Label errorEmptyFields;
     @FXML
     private Label errorUniqueTourname;
+    private  String oldTourName;
 
     static BusinessLogicLayer bl = new BusinessLogicLayer();
 
@@ -58,6 +59,7 @@ public class EditTourController implements Initializable {
       tourTo.setText(Item.getTourTo());
       tourTransportType.setText(Item.getTourTransportType());
       tourDistance.setText(Item.getTourDistance());
+      oldTourName= Item.getTourName();
     }
 
     @FXML
@@ -67,13 +69,16 @@ public class EditTourController implements Initializable {
         if(tourName.getText().isBlank() || tourDescription.getText().isBlank() || tourFrom.getText().isBlank() || tourTo.getText().isBlank() || tourTransportType.getText().isBlank() || tourDistance.getText().isBlank()){
             errorEmptyFields.setVisible(true);
         }else{
-            ArrayList<TourModel> toursList = bl.getTours();
-            toursList.stream().forEach(tour ->
-            {
-                if(tour.getTourName().equals(tourName.getText())){
-                    isUsed.set(true);
-                }
-            });
+            if(oldTourName.equals(tourName.getText())==false){
+                ArrayList<TourModel> toursList = bl.getTours();
+                toursList.stream().forEach(tour ->
+                {
+                    if(tour.getTourName().equals(tourName.getText())){
+                        isUsed.set(true);
+                    }
+                });
+            }
+
             if(isUsed.get()==false){
                 viewModel.EditTour();
                 Stage stage = (Stage) editTourButton.getScene().getWindow();

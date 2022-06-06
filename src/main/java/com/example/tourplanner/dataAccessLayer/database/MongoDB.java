@@ -63,24 +63,24 @@ public class MongoDB implements IMongoDB {
     }
 
     public void exportTours(){
-        try {
-            Runtime.getRuntime().exec("mongoexport --host localhost --port 27017 --db TourPlanner --collection Tours --out src/main/resources/com/example/tourplanner/exports/Tours.json");
-        } catch (IOException e) {
-            logger.error("MongoDB.java exportTours IOException");
-            throw new RuntimeException(e);
-        }
-        //Runtime.getRuntime().exec("C:/Program Files/MongoDB/Tools/100/bin/mongoexport.exe --host localhost --port 27017 --db TourPlanner --collection Tours --out src/main/resources/com/example/tourplanner/exports/Tours.json");
+            try {
+                Runtime.getRuntime().exec("C:/Program Files/MongoDB/Tools/100/bin/mongoexport.exe --host localhost --port 27017 --db TourPlanner --collection Tours --out src/main/resources/com/example/tourplanner/exports/Tours.json");
+                //Runtime.getRuntime().exec("mongoexport --host localhost --port 27017 --db TourPlanner --collection Tours --out src/main/resources/com/example/tourplanner/exports/Tours.json");
+            } catch (IOException e) {
+                logger.error("MongoDB.java exportTours IOException");
+                throw new RuntimeException(e);
+            }
     }
 
     public void exportTourLogs(){
         try {
-            Runtime.getRuntime().exec("mongoexport --host localhost --port 27017 --db TourPlanner --collection TourLogs --out ../TourPlanner/src/main/resources/com/example/tourplanner/exports/TourLogs.json");
+            Runtime.getRuntime().exec("C:/Program Files/MongoDB/Tools/100/bin/mongoexport.exe --host localhost --port 27017 --db TourPlanner --collection TourLogs --out ../TourPlanner/src/main/resources/com/example/tourplanner/exports/TourLogs.json");
+            //Runtime.getRuntime().exec("mongoexport --host localhost --port 27017 --db TourPlanner --collection TourLogs --out ../TourPlanner/src/main/resources/com/example/tourplanner/exports/TourLogs.json");
         } catch (IOException e) {
             logger.error("MongoDB.java exportTourLogs IOException");
             throw new RuntimeException(e);
         }
-        //Runtime.getRuntime().exec("C:/Program Files/MongoDB/Tools/100/bin/mongoexport.exe --host localhost --port 27017 --db TourPlanner --collection TourLogs --out ../TourPlanner/src/main/resources/com/example/tourplanner/exports/TourLogs.json");
-    }
+  }
 
     public void importTours(String path){
         try {

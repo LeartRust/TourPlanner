@@ -1,0 +1,3 @@
+{"_id":{"$oid":"6298e265f07efb141c2ce079"},"tourName":"CL-Finals","tourDescription":"A Tour to the location of the cl finals","tourFrom":"Vienna","tourTo":"Paris","tourTransportType":"Car","tourDistance":"100","isFavorite":false,"ages":{"min":5}}
+{"_id":{"$oid":"6298e65357d02a471a101306"},"tourName":"TestTour","tourDescription":"Test tour description","tourFrom":"Paris","tourTo":"Vienna","tourTransportType":"Car","tourDistance":"100","isFavorite":false,"ages":{"min":5}}
+{"_id":{"$oid":"629e48e1e8df3258edef04d6"},"tourName":"WrongTour","tourDescription":"B","tourFrom":"Vienna","tourTo":"Berlin","tourTransportType":"Boat","tourDistance":"100000000000","isFavorite":false,"ages":{"min":5}}
