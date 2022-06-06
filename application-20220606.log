@@ -1,1 +1,2 @@
 2022-06-06 20:36:44.183 [JavaFX Application Thread] ERROR com.example.tourplanner.logger.Log4J2Wrapper - MongoDB.java exportTours IOException
+2022-06-06 20:44:34.009 [JavaFX Application Thread] ERROR com.example.tourplanner.logger.Log4J2Wrapper - DetailsReport.java createPdf FileNotFoundException

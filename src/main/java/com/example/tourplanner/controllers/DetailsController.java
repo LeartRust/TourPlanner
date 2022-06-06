@@ -83,7 +83,7 @@ public class DetailsController implements Initializable {
 
         //get all logs from tour by tourName
         ArrayList<TourLogModel> tourLogs = bl.getTourLogsByTourName(tourName.getText());
-        tourLogs.forEach(log -> System.out.println(log.getComment()));
+        //tourLogs.forEach(log -> System.out.println(log.getComment()));
         report.createPdf(tourName.getText(), tourDescription.getText(), tourFrom.getText(), tourTo.getText(), tourTransportType.getText(), tourDistance.getText(), tourLogs);
     }
 
