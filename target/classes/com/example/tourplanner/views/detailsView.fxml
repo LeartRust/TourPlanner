@@ -90,7 +90,7 @@
                 </children>
             </AnchorPane>
             <!--_____________________________________________________________________________________________________________-->
-            <AnchorPane>
+            <AnchorPane minHeight="235">
                 <children>
                     <ListView  fx:id="tourLogListView" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
 
