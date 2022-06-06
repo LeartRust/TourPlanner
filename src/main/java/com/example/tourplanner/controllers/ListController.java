@@ -220,7 +220,6 @@ public class ListController implements Initializable {
 
                             changeImg.setFitHeight(15);
                             changeImg.setFitWidth(15);
-                            System.out.println(item.getIsFavorite());
                             buttonFavorite.setGraphic(changeImg);
                         }
 
@@ -274,10 +273,12 @@ public class ListController implements Initializable {
                 buttonDelete.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent arg0) {
-                        bl.deleteTour(item.getTourName());
-                        bl.deleteTourLogs(item.getTourName());
-                        addToList();
-                        filterList(searchfield.getText());
+                        if(item.getIsFavorite()=="false"){
+                            bl.deleteTour(item.getTourName());
+                            bl.deleteTourLogs(item.getTourName());
+                            addToList();
+                            filterList(searchfield.getText());
+                        }
                     }
                 });
                 root.getChildren().add( buttonDelete);
